@@ -6,4 +6,4 @@
 !/log/.keep
 !/tmp/.keep
 .byebug_history
-vendor/bundle/*
+vendor/bundle/
