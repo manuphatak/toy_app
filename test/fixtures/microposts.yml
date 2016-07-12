@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
-  user_id: 1
+  content: This is my first tweet! Hello
+  user: user
 
 two:
-  content: MyText
-  user_id: 1
+  content: Hello @user. New rule, you're banned for your offensive tweet.
+  user: admin
+
+three:
+  content: "[redacted]"
+  user: user
