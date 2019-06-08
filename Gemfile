@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '4.2.1'
 gem 'puma', '3.4.0'
-gem 'rails', '5.0.0'
+gem 'rails', '5.0.7.2'
 gem 'sass-rails', '5.0.5'
 gem 'uglifier', '3.0.0'
 # gem 'therubyracer', platforms: :ruby
