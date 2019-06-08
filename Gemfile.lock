@@ -88,7 +88,7 @@ GEM
     mimemagic (0.3.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
-    minitest (5.9.0)
+    minitest (5.11.3)
     nio4r (2.3.1)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -202,7 +202,7 @@ DEPENDENCIES
   jbuilder (= 2.9.1)
   jquery-rails (= 4.3.3)
   listen (= 3.1.5)
-  minitest (= 5.9.0)
+  minitest (= 5.11.3)
   pg
   pry
   puma (= 3.12.1)

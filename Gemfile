@@ -13,7 +13,7 @@ gem 'uglifier', '4.1.20'
 
 group :development, :test do
   gem 'byebug', '11.0.1', platform: :mri
-  gem 'minitest', '5.9.0'
+  gem 'minitest', '5.11.3'
   gem 'pry'
   gem 'simplecov', require: false
   gem 'sqlite3', '1.4.1'
