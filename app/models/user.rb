@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :microposts
-  validates_presence_of :name, :email
+  validates :name, :email, presence: true
 end
