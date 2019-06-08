@@ -16,10 +16,10 @@ gem 'turbolinks', '5.0.0'
 
 group :development, :test do
   gem 'byebug', '11.0.1', platform: :mri
+  gem 'minitest', '5.9.0'
   gem 'pry'
   gem 'simplecov', require: false
   gem 'sqlite3', '1.3.11'
-  gem 'minitest', '5.9.0'
 end
 
 group :development do
