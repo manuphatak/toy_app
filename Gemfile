@@ -19,6 +19,7 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov', require: false
   gem 'sqlite3', '1.3.11'
+  gem 'minitest', '5.9.0'
 end
 
 group :development do
