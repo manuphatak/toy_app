@@ -15,6 +15,7 @@ gem 'jbuilder', '2.5.0'
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug', '9.0.5', platform: :mri
+  gem 'pry'
 end
 
 group :development do
