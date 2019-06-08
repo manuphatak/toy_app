@@ -15,7 +15,7 @@ gem 'turbolinks', '5.0.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
-  gem 'byebug', '9.0.5', platform: :mri
+  gem 'byebug', '11.0.1', platform: :mri
   gem 'pry'
   gem 'simplecov', require: false
   gem 'sqlite3', '1.3.11'
