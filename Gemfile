@@ -2,12 +2,12 @@
 
 source 'https://rubygems.org'
 
-gem 'coffee-rails', '4.2.1'
-gem 'jbuilder', '2.5.0'
-gem 'jquery-rails', '4.1.1'
-gem 'puma', '3.4.0'
-gem 'rails', '5.0.0'
-gem 'sass-rails', '5.0.5'
+gem 'coffee-rails', '5.0.0'
+gem 'jbuilder', '2.9.1'
+gem 'jquery-rails', '4.3.3'
+gem 'puma', '3.12.1'
+gem 'rails', '5.2.3'
+gem 'sass-rails', '5.0.7'
 gem 'turbolinks', '5.0.0'
 gem 'uglifier', '3.0.0'
 
