@@ -24,7 +24,7 @@ end
 group :development do
   gem 'listen', '3.0.8'
   gem 'spring', '1.7.2'
-  gem 'spring-watcher-listen', '2.0.0'
+  gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '3.3.1'
   # gem 'capistrano-rails'
   gem 'rubocop', require: false
