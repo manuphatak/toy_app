@@ -8,7 +8,7 @@ gem 'rails', '5.0.0'
 gem 'sass-rails', '5.0.5'
 gem 'uglifier', '3.0.0'
 # gem 'therubyracer', platforms: :ruby
-gem 'jbuilder', '2.5.0'
+gem 'jbuilder', '2.9.1'
 gem 'jquery-rails', '4.1.1'
 gem 'turbolinks', '5.0.0'
 # gem 'redis', '~> 3.0'
