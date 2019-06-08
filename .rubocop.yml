@@ -1,0 +1,13 @@
+inherit_from: .rubocop_todo.yml
+inherit_mode:
+  merge:
+    - Exclude
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+Metrics/LineLength:
+  Max: 120
+Style/Documentation:
+  Enabled: false
+Rails:
+  Enabled: true
