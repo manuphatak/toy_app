@@ -12,14 +12,11 @@ gem 'jbuilder', '2.5.0'
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
-group :test do
-  gem 'simplecov', require: false
-end
-
 group :development, :test do
   gem 'sqlite3', '1.3.11'
   gem 'byebug', '9.0.5', platform: :mri
   gem 'pry'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -28,6 +25,7 @@ group :development do
   gem 'spring', '1.7.2'
   gem 'spring-watcher-listen', '2.0.0'
 # gem 'capistrano-rails'
+
 end
 
 group :production do
