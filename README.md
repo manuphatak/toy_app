@@ -1,24 +1,7 @@
-# README
+# Toy App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/bionikspoon/toy_app.svg?branch=develop)](https://travis-ci.org/bionikspoon/toy_app)
 
-Things you may want to cover:
+[![Maintainability](https://api.codeclimate.com/v1/badges/bc3ab89a6adb16c2d978/maintainability)](https://codeclimate.com/github/bionikspoon/toy_app/maintainability)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bc3ab89a6adb16c2d978/test_coverage)](https://codeclimate.com/github/bionikspoon/toy_app/test_coverage)
