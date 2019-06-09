@@ -2,34 +2,30 @@
 
 source 'https://rubygems.org'
 
-gem 'coffee-rails', '4.2.1'
-gem 'puma', '3.4.0'
-gem 'rails', '5.0.0'
-gem 'sass-rails', '5.0.5'
-gem 'uglifier', '3.0.0'
-# gem 'therubyracer', platforms: :ruby
-gem 'jbuilder', '2.5.0'
-gem 'jquery-rails', '4.1.1'
-gem 'turbolinks', '5.0.0'
-# gem 'redis', '~> 3.0'
-# gem 'bcrypt', '~> 3.1.7'
+gem 'coffee-rails', '5.0.0'
+gem 'jbuilder', '2.9.1'
+gem 'jquery-rails', '4.3.3'
+gem 'puma', '3.12.1'
+gem 'rails', '5.2.3'
+gem 'sass-rails', '5.0.7'
+gem 'turbolinks', '5.2.0'
+gem 'uglifier', '4.1.20'
 
 group :development, :test do
   gem 'byebug', '11.0.1', platform: :mri
-  gem 'minitest', '5.9.0'
+  gem 'minitest', '5.11.3'
   gem 'pry'
   gem 'simplecov', require: false
-  gem 'sqlite3', '1.3.11'
+  gem 'sqlite3', '1.4.1'
 end
 
 group :development do
-  gem 'listen', '3.0.8'
-  gem 'spring', '1.7.2'
-  gem 'spring-watcher-listen', '2.0.1'
-  gem 'web-console', '3.3.1'
-  # gem 'capistrano-rails'
+  gem 'listen', '3.1.5'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  gem 'spring', '2.0.2'
+  gem 'spring-watcher-listen', '2.0.1'
+  gem 'web-console', '3.3.1'
 end
 
 group :production do
