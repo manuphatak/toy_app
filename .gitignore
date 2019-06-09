@@ -31,3 +31,6 @@
 /config/master.key
 /coverage/
 /vendor/bundle/
+
+# Ignore Spring files.
+/spring/*.pid
