@@ -6,13 +6,13 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test 'should be root' do
     get root_url
     assert_response :success
-    assert_select 'title', 'Home | Toy App'
+    assert_select 'title', 'Toy App'
   end
 
   test 'should get home' do
     get static_pages_home_url
     assert_response :success
-    assert_select 'title', 'Home | Toy App'
+    assert_select 'title', 'Toy App'
   end
 
   test 'should get help' do
