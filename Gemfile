@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '5.0.0'
 gem 'jbuilder', '2.9.1'
-gem 'jquery-rails', '4.3.3'
+gem 'jquery-rails', '4.3.4'
 gem 'puma', '3.12.1'
 gem 'rails', '5.2.3'
 gem 'sass-rails', '5.0.7'
