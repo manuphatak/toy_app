@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
   setup do
-    @user = users(:one)
+    @user = users(:user)
   end
 
   test 'visiting the index' do

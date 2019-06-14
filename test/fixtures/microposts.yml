@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
-  user: one
+  content: This is my first micropost! Hello
+  user: user
 
 two:
-  content: MyText
-  user: two
+  content: Hello @user. New rule, you're banned for your offensive micropost.
+  user: admin
+
+three:
+  content: "[redacted]"
+  user: user
