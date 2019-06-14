@@ -1,6 +1,3 @@
 # frozen_string_literal: true
 
-json.array!(@users) do |user|
-  json.extract! user, :id, :name, :email
-  json.url user_url(user, format: :json)
-end
+json.array! @users, partial: 'users/user', as: :user

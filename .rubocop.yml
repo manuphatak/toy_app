@@ -5,6 +5,7 @@ inherit_mode:
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - db/schema.rb
 Metrics/LineLength:
   Max: 120
 Style/Documentation:

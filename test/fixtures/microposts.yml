@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: This is my first tweet! Hello
+  content: This is my first micropost! Hello
   user: user
 
 two:
-  content: Hello @user. New rule, you're banned for your offensive tweet.
+  content: Hello @user. New rule, you're banned for your offensive micropost.
   user: admin
 
 three:

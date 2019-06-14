@@ -1,6 +1,3 @@
 # frozen_string_literal: true
 
-json.array!(@microposts) do |micropost|
-  json.extract! micropost, :id, :content, :user_id
-  json.url micropost_url(micropost, format: :json)
-end
+json.array! @microposts, partial: 'microposts/micropost', as: :micropost
