@@ -1,14 +1,7 @@
 {
-  "addons": [
-    "papertrail",
-    "heroku-postgresql"
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/ruby"
-    }
-  ],
+  "name": "toy_app",
   "description": "",
+  "scripts": {},
   "env": {
     "LANG": {
       "required": true
@@ -40,8 +33,14 @@
       "quantity": 1
     }
   },
-  "name": "toy_app",
-  "scripts": {
-  },
+  "addons": [
+    "papertrail",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ],
   "stack": "heroku-18"
 }
