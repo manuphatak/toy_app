@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
   <div class="container">
-    <%= link_to  "Toy App", "#", class: "navbar-brand" %>
+    <%= link_to  "Toy App", root_path, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,12 +8,12 @@
     <div class="collapse navbar-collapse" id='navbarSupportedContent'>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <%= link_to  "#", class: "nav-link" do %>
+          <%= link_to  root_path, class: "nav-link" do %>
             Home <span class="sr-only">(current)</span>
           <%end %>
         </li>
         <li class="nav-item">
-          <%= link_to  "#", class: "nav-link" do %>
+          <%= link_to  help_path, class: "nav-link" do %>
             Help
           <%end %>
         </li>
