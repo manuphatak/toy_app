@@ -4,11 +4,12 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  email      :string
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  email           :string
+#  name            :string
+#  password_digest :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
@@ -16,6 +17,8 @@
 #
 
 class User < ApplicationRecord
+  has_secure_password
+
   has_many :microposts, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }

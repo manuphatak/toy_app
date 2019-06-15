@@ -55,6 +55,7 @@ GEM
     autoprefixer-rails (9.6.0)
       execjs
     awesome_print (1.8.0)
+    bcrypt (3.1.13)
     bindex (0.7.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -268,6 +269,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   awesome_print
+  bcrypt
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
