@@ -45,6 +45,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'guard-rspec', require: false
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'selenium-webdriver'
