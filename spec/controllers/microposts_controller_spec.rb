@@ -26,26 +26,29 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe MicropostsController, type: :controller do
+  fixtures :users, :microposts
+
   # This should return the minimal set of attributes required to create a valid
   # Micropost. As you add validations to Micropost, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      content: microposts(:one).content,
+      user_id: microposts(:one).user_id
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      content: '',
+      user_id: nil
+    }
   end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # MicropostsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
 
   describe 'GET #index' do
     it 'returns a success response' do
       Micropost.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index
       expect(response).to be_successful
     end
   end
@@ -53,14 +56,14 @@ RSpec.describe MicropostsController, type: :controller do
   describe 'GET #show' do
     it 'returns a success response' do
       micropost = Micropost.create! valid_attributes
-      get :show, params: { id: micropost.to_param }, session: valid_session
+      get :show, params: { id: micropost.to_param }
       expect(response).to be_successful
     end
   end
 
   describe 'GET #new' do
     it 'returns a success response' do
-      get :new, params: {}, session: valid_session
+      get :new
       expect(response).to be_successful
     end
   end
@@ -68,7 +71,7 @@ RSpec.describe MicropostsController, type: :controller do
   describe 'GET #edit' do
     it 'returns a success response' do
       micropost = Micropost.create! valid_attributes
-      get :edit, params: { id: micropost.to_param }, session: valid_session
+      get :edit, params: { id: micropost.to_param }
       expect(response).to be_successful
     end
   end
@@ -77,19 +80,19 @@ RSpec.describe MicropostsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Micropost' do
         expect do
-          post :create, params: { micropost: valid_attributes }, session: valid_session
+          post :create, params: { micropost: valid_attributes }
         end.to change(Micropost, :count).by(1)
       end
 
       it 'redirects to the created micropost' do
-        post :create, params: { micropost: valid_attributes }, session: valid_session
+        post :create, params: { micropost: valid_attributes }
         expect(response).to redirect_to(Micropost.last)
       end
     end
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { micropost: invalid_attributes }, session: valid_session
+        post :create, params: { micropost: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -98,19 +101,25 @@ RSpec.describe MicropostsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          content: 'Test post',
+          user_id: users(:admin).id
+        }
       end
 
       it 'updates the requested micropost' do
         micropost = Micropost.create! valid_attributes
-        put :update, params: { id: micropost.to_param, micropost: new_attributes }, session: valid_session
-        micropost.reload
-        skip('Add assertions for updated state')
+        put :update, params: { id: micropost.to_param, micropost: new_attributes }
+        aggregate_failures do
+          micropost.reload
+          expect(micropost.content).to eq(new_attributes[:content])
+          expect(micropost.user).to eq(users(:admin))
+        end
       end
 
       it 'redirects to the micropost' do
         micropost = Micropost.create! valid_attributes
-        put :update, params: { id: micropost.to_param, micropost: valid_attributes }, session: valid_session
+        put :update, params: { id: micropost.to_param, micropost: valid_attributes }
         expect(response).to redirect_to(micropost)
       end
     end
@@ -118,7 +127,7 @@ RSpec.describe MicropostsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
         micropost = Micropost.create! valid_attributes
-        put :update, params: { id: micropost.to_param, micropost: invalid_attributes }, session: valid_session
+        put :update, params: { id: micropost.to_param, micropost: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -128,13 +137,13 @@ RSpec.describe MicropostsController, type: :controller do
     it 'destroys the requested micropost' do
       micropost = Micropost.create! valid_attributes
       expect do
-        delete :destroy, params: { id: micropost.to_param }, session: valid_session
+        delete :destroy, params: { id: micropost.to_param }
       end.to change(Micropost, :count).by(-1)
     end
 
     it 'redirects to the microposts list' do
       micropost = Micropost.create! valid_attributes
-      delete :destroy, params: { id: micropost.to_param }, session: valid_session
+      delete :destroy, params: { id: micropost.to_param }
       expect(response).to redirect_to(microposts_url)
     end
   end
