@@ -19,7 +19,6 @@
 #                           DELETE /microposts/:id(.:format)                                                                microposts#destroy
 #                     users GET    /users(.:format)                                                                         users#index
 #                           POST   /users(.:format)                                                                         users#create
-#                  new_user GET    /users/new(.:format)                                                                     users#new
 #                 edit_user GET    /users/:id/edit(.:format)                                                                users#edit
 #                      user GET    /users/:id(.:format)                                                                     users#show
 #                           PATCH  /users/:id(.:format)                                                                     users#update
@@ -41,5 +40,5 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
 
   resources :microposts
-  resources :users
+  resources :users, except: %i[new]
 end
