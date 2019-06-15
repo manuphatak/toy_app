@@ -17,8 +17,6 @@
 #
 
 class User < ApplicationRecord
-  has_secure_password
-
   has_many :microposts, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -27,6 +25,8 @@ class User < ApplicationRecord
             length: { maximum: 50 },
             format: { with: URI::MailTo::EMAIL_REGEXP },
             uniqueness: { case_sensitive: false }
+  has_secure_password
+  validates :password, length: { minimum: 6 }, on: :create
 
   before_save { email.downcase! }
 end
