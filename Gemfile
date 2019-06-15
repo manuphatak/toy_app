@@ -27,6 +27,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'simplecov', require: false
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
