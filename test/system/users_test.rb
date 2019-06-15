@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class UsersTest < ApplicationSystemTestCase
   setup do
-    @user = users(:user)
+    @user = User.new(name: 'Test User', email: 'test.user@toy.app', password: 'password')
   end
 
   test 'visiting the index' do
@@ -18,6 +18,9 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in 'Email', with: @user.email
     fill_in 'Name', with: @user.name
+    fill_in 'Password', with: @user.password
+    fill_in 'Password confirmation', with: @user.password
+
     click_on 'Create User'
 
     assert_text 'User was successfully created'
@@ -30,6 +33,8 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in 'Email', with: @user.email
     fill_in 'Name', with: @user.name
+    fill_in 'Password', with: @user.password
+    fill_in 'Password confirmation', with: @user.password
     click_on 'Update User'
 
     assert_text 'User was successfully updated'

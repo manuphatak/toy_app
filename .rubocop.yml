@@ -8,6 +8,8 @@ AllCops:
     - db/schema.rb
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - config/routes.rb
 Style/Documentation:
   Enabled: false
 Rails:
