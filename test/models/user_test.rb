@@ -60,4 +60,10 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not other_user.valid?
   end
+
+  test 'emails are stored as lowercase' do
+    assert_changes '@user.email', from: @user.email, to: 'test@toy.app' do
+      @user.update(email: 'TEST@TOY.APP')
+    end
+  end
 end
