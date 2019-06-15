@@ -14,7 +14,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test 'creating a User' do
     visit users_url
-    click_on 'New User'
+    click_on 'Sign up'
 
     fill_in 'Email', with: @user.email
     fill_in 'Name', with: @user.name
