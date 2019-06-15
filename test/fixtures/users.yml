@@ -13,8 +13,8 @@
 
 user:
   name: User
-  email: user@toy_app.localhost
+  email: user@toy.app
 
 admin:
   name: Admin
-  email: admin@toy_app.localhost
+  email: admin@toy.app
