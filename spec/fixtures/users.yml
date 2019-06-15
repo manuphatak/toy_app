@@ -1,0 +1,9 @@
+user:
+  name: User
+  email: user@toy.app
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+
+admin:
+  name: Admin
+  email: admin@toy.app
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
