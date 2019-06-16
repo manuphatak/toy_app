@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'users/edit', type: :view do
-
-    let!(:user) { assign(:user, FactoryBot.build_stubbed(:user))}
-
+  let!(:user) { assign(:user, FactoryBot.build_stubbed(:user)) }
 
   it 'renders the edit user form' do
     render

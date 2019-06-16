@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'users/show', type: :view do
-      let!(:user) { assign(:user, FactoryBot.build_stubbed(:user))}
-
+  let!(:user) { assign(:user, FactoryBot.build_stubbed(:user)) }
 
   it 'renders attributes in <p>' do
     render

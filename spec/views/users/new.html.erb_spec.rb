@@ -11,8 +11,7 @@ RSpec.describe 'users/new', type: :view do
   #                   password_confirmation: 'password'
   #                 ))
   # end
-  let!(:user) { assign(:user, FactoryBot.build(:user))}
-
+  let!(:user) { assign(:user, FactoryBot.build(:user)) }
 
   it 'renders new user form' do
     render

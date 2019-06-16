@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'microposts/show', type: :view do
-  let!(:micropost) { assign(:micropost, FactoryBot.build_stubbed(:micropost))}
-
+  let!(:micropost) { assign(:micropost, FactoryBot.build_stubbed(:micropost)) }
 
   it 'renders attributes in <p>' do
     render
