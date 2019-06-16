@@ -1,9 +1,7 @@
 language: ruby
-cache:
-  - bundler
+cache: bundler
 addons:
   apt:
-    - google-chrome-stable
     - chromium-chromedriver
 before_install:
   - gem install bundler
