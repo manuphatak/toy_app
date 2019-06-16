@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'capybara/rspec'
 require 'simplecov'
 SimpleCov.start 'rails'
 
