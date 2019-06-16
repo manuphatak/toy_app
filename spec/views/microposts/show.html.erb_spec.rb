@@ -7,7 +7,7 @@ RSpec.describe 'microposts/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/Content:/)
-    expect(rendered).to match(/User/)
+
+    expect(rendered).to have_selector('p', text: micropost.content)
   end
 end
