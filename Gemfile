@@ -23,8 +23,11 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.8'
   gem 'simplecov', require: false
   gem 'sqlite3'
 end
@@ -41,11 +44,8 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
   gem 'guard'
-  gem 'guard-minitest'
-  gem 'minitest'
-  gem 'minitest-reporters'
+  gem 'guard-rspec', require: false
   gem 'selenium-webdriver'
 end
 
