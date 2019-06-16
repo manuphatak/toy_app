@@ -1,4 +1,10 @@
 language: ruby
+cache:
+  - bundler
+addons:
+  apt:
+    - google-chrome-stable
+    - chromium-chromedriver
 before_install:
   - gem install bundler
 bundler_args: --without production
@@ -11,7 +17,3 @@ script:
   - bundle exec rspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-addons:
-  apt:
-    - google-chrome-stable
-    - chromium-chromedriver
