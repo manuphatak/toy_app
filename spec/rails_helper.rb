@@ -62,9 +62,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.before(:each, type: :system) do
-    driven_by :selenium,
-              using: :chrome,
-              screen_size: [1400, 1400],
-              options: { args: ['headless', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage'] }
+    driven_by :selenium_chrome_headless
   end
 end
