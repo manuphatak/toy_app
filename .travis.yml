@@ -3,6 +3,7 @@ before_install:
   - gem install bundler
 bundler_args: --without production
 before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
@@ -10,3 +11,7 @@ script:
   - bundle exec rspec
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+addons:
+  apt:
+    - google-chrome-stable
+    - chromium-chromedriver
