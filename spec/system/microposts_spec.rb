@@ -3,11 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Microposts', type: :system do
-  let(:micropost) { FactoryBot.build(:micropost) }
   let(:user) { FactoryBot.create(:user) }
 
   describe 'visiting the index' do
-    before { FactoryBot.create_list(:micropost, 10) }
+    before { FactoryBot.create_list(:micropost, 5) }
     it 'lists microposts' do
       visit microposts_url
       expect(page).to have_selector 'h1', text: 'Microposts'
@@ -19,7 +18,7 @@ RSpec.describe 'Microposts', type: :system do
       visit microposts_url
       click_on 'New Micropost'
 
-      fill_in 'Content', with: micropost.content
+      fill_in 'Content', with: '[redacted]'
       fill_in 'User', with: user.id
       click_on 'Create Micropost'
 
@@ -29,6 +28,7 @@ RSpec.describe 'Microposts', type: :system do
   end
 
   describe 'updating a Micropost' do
+    before { FactoryBot.create(:micropost) }
     it 'shows user success message' do
       visit microposts_url
       click_on 'Edit', match: :first
