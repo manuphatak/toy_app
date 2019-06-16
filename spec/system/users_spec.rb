@@ -49,6 +49,8 @@ RSpec.describe 'Microposts', type: :system do
   end
 
   describe 'destroying a User' do
+    before { create_list(:user, 5) }
+
     it 'shows a success message' do
       visit users_url
       page.accept_confirm do
