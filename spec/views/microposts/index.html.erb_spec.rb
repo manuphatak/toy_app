@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'microposts/index', type: :view do
-  fixtures :microposts
-  before(:each) do
-    assign(:microposts, [microposts(:one), microposts(:two), microposts(:three)])
-  end
+  let!(:microposts) { assign(:microposts, FactoryBot.create_list(:micropost, 5))}
+
 
   it 'renders a list of microposts' do
     render

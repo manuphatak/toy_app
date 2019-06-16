@@ -23,6 +23,8 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8'

@@ -3,11 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'microposts/show', type: :view do
-  fixtures :microposts
+  let!(:micropost) { assign(:micropost, FactoryBot.build_stubbed(:micropost))}
 
-  before(:each) do
-    @micropost = assign(:micropost, microposts(:one))
-  end
 
   it 'renders attributes in <p>' do
     render

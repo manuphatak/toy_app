@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'microposts/new', type: :view do
-  fixtures :users
-  before(:each) do
-    assign(:micropost, Micropost.new(content: 'MyText', user: users(:user)))
-  end
+  let!(:micropost) { assign(:micropost, FactoryBot.build(:micropost))}
+
 
   it 'renders new micropost form' do
     render
