@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
   <div class="container">
-    <%= link_to  "Toy App", root_path, class: "navbar-brand" %>
+    <%= link_to("Toy App", root_path, class: "navbar-brand") %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id='navbarSupportedContent'>
       <ul class="navbar-nav mr-auto">
-        <%= nav_item 'Home',root_path %>
-        <%= nav_item 'Help', help_path %>
-        <%= nav_item 'Users', users_path %>
-
+        <%= nav_item('Home',root_path) %>
+        <%= nav_item('Help', help_path) %>
+        <%= nav_item('Users', users_path) %>
       </ul>
+
       <ul class="navbar-nav">
         <% if logged_in? %>
           <li class="nav-item dropdown">
@@ -19,16 +19,15 @@
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropown">
-              <%= nav_dropdown_item "Profile", current_user %>
-              <%= nav_dropdown_item "Settings", "#" %>
+              <%= nav_dropdown_item("Profile", current_user) %>
+              <%= nav_dropdown_item("Settings", "#") %>
 
               <div class="dropdown-divider"></div>
-              <%= nav_dropdown_item "Log out", logout_path, method: :delete %>
+              <%= nav_dropdown_item("Log out", logout_path, method: :delete) %>
             </div>
           </li>
         <% else %>
-
-          <%= nav_item(login_path, 'Log in') %>
+          <%= nav_item('Log in', login_path) %>
         <% end %>
       </ul>
     </div>
