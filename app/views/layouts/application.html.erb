@@ -12,10 +12,11 @@
   </head>
   <body>
     <%= render  "layouts/navigation" %>
+    <%= render  "layouts/flash" %>
+
     <main role="main">
       <%= yield %>
     </main>
     <%= render  "layouts/footer" %>
-    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

@@ -1,21 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>
+    <%= gravatar_for(@user, klass: "gravatar rounded-circle img-thumbnai") %><%= @user.name %>
+  </h1>
 
-<h1>
-  <%= gravatar_for(@user, klass: "gravatar rounded-circle img-thumbnai") %><%= @user.name %>
-</h1>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+  <p>
+    <strong>Posts:</strong>
+    <ul>
+      <% @user.microposts.each do |micropost| %>
+        <li><%= micropost.content%></li>
+      <% end %>
+    </ul>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-<p>
-  <strong>Posts:</strong>
-  <ul>
-    <% @user.microposts.each do |micropost| %>
-      <li><%= micropost.content%></li>
-    <% end %>
-  </ul>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+</div>

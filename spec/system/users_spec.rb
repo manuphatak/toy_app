@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Microposts', type: :system do
+RSpec.describe 'Users', type: :system do
   let(:user) { build_stubbed(:user) }
 
   describe 'visiting the index' do

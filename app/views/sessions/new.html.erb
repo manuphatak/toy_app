@@ -1,0 +1,13 @@
+<% provide(:title, 'Log in') %>
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <h1>Log in</h1>
+
+    <%= bootstrap_form_for(:session, url: login_path) do |f| %>
+      <%= f.email_field :email %>
+      <%= f.password_field :password %>
+      <%= f.submit 'Log in' %>
+    <% end %>
+  </div>
+</div>
