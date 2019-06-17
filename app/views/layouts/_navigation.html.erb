@@ -7,26 +7,29 @@
     </button>
     <div class="collapse navbar-collapse" id='navbarSupportedContent'>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <%= link_to  root_path, class: "nav-link" do %>
-            Home <span class="sr-only">(current)</span>
-          <%end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to  help_path, class: "nav-link" do %>
-            Help
-          <%end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to  users_path, class: "nav-link" do %>
-            Users
-          <%end %>
-        </li>
-        <li class="nav-item ">
-          <%= link_to  login_path, class: "nav-link" do %>
-            Log In
-          <%end %>
-        </li>
+        <%= nav_item 'Home',root_path %>
+        <%= nav_item 'Help', help_path %>
+        <%= nav_item 'Users', users_path %>
+
+      </ul>
+      <ul class="navbar-nav">
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="accountDropown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="accountDropown">
+              <%= nav_dropdown_item "Profile", current_user %>
+              <%= nav_dropdown_item "Settings", "#" %>
+
+              <div class="dropdown-divider"></div>
+              <%= nav_dropdown_item "Log out", logout_path, method: :delete %>
+            </div>
+          </li>
+        <% else %>
+
+          <%= nav_item(login_path, 'Log in') %>
+        <% end %>
       </ul>
     </div>
   </div>
