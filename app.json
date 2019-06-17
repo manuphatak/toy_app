@@ -1,7 +1,9 @@
 {
   "name": "toy_app",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "postdeploy": "bundle exec rails db:schema:load db:seed"
+  },
   "env": {
     "LANG": {
       "required": true
