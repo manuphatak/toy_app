@@ -1,5 +1,5 @@
 <% if flash.any? %>
-  <div class="container flash">
+  <div class="container mt-2">
     <% flash.each do |key, message| %>
       <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
         <%= message %>
