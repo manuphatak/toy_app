@@ -9,6 +9,9 @@
 #                     about GET    /about(.:format)                                                                         static_pages#about
 #                   contact GET    /contact(.:format)                                                                       static_pages#contact
 #                    signup GET    /signup(.:format)                                                                        users#new
+#                     login GET    /login(.:format)                                                                         sessions#new
+#                           POST   /login(.:format)                                                                         sessions#create
+#                    logout DELETE /logout(.:format)                                                                        sessions#destroy
 #                microposts GET    /microposts(.:format)                                                                    microposts#index
 #                           POST   /microposts(.:format)                                                                    microposts#create
 #             new_micropost GET    /microposts/new(.:format)                                                                microposts#new
@@ -38,6 +41,9 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
   resources :microposts
   resources :users, except: %i[new]

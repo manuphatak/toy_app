@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'SiteLayouts', type: :system do
+RSpec.describe 'SiteLayout', type: :system do
   it 'has links from layout' do
     visit root_path
     expect(page).to have_link  href: root_path, count: 2
