@@ -48,8 +48,11 @@ RSpec.describe SessionsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'returns http success' do
-      delete :destroy
-      expect(response).to have_http_status(:success)
+      aggregate_failures do
+        expect(controller).to receive(:logout)
+        delete :destroy
+        expect(response).to have_http_status(:redirect)
+      end
     end
   end
 end

@@ -13,10 +13,18 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe SessionsHelper, type: :helper do
+  let(:user) { create(:user) }
   describe '#login' do
-    let(:user) { create(:user) }
     it 'adds user.id to the session' do
       expect { helper.login(user) }.to change { helper.session[:user_id] }.from(nil).to(user.id)
+    end
+  end
+
+  describe '#logout' do
+    before { helper.login(user) }
+
+    it 'removes user.id from the session' do
+      expect { helper.logout }.to change { helper.logged_in? }.from(true).to(false)
     end
   end
 end
