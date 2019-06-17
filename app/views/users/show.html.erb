@@ -10,7 +10,7 @@
   <p>
     <strong>Posts:</strong>
     <ul>
-      <% @user.microposts.each do |micropost| %>
+      <% @user.microposts.select(:content).order(created_at: :desc).each do |micropost| %>
         <li><%= micropost.content%></li>
       <% end %>
     </ul>

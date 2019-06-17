@@ -22,5 +22,15 @@ FactoryBot.define do
     email { Faker::Internet.email(name) }
     password { 'password' }
     password_confirmation { password }
+
+    trait :with_posts do
+      transient do
+        posts_count { 10 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:micropost, evaluator.posts_count, user: user)
+      end
+    end
   end
 end
