@@ -28,7 +28,7 @@ class MicropostsController < ApplicationController
 
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
+        format.html { redirect_to @micropost, flash: { success: 'Micropost was successfully created.' } }
         format.json { render :show, status: :created, location: @micropost }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MicropostsController < ApplicationController
   def update
     respond_to do |format|
       if @micropost.update(micropost_params)
-        format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
+        format.html { redirect_to @micropost, flash: { success: 'Micropost was successfully updated.' } }
         format.json { render :show, status: :ok, location: @micropost }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     respond_to do |format|
-      format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
+      format.html { redirect_to microposts_url, flash: { succcess: 'Micropost was successfully destroyed.' } }
       format.json { head :no_content }
     end
   end

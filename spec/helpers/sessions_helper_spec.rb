@@ -16,7 +16,7 @@ RSpec.describe SessionsHelper, type: :helper do
   describe '#login' do
     let(:user) { create(:user) }
     it 'adds user.id to the session' do
-      expect { helper.login(user) }.to change{helper.session[:user_id]}.from(nil).to(user.id)
+      expect { helper.login(user) }.to change { helper.session[:user_id] }.from(nil).to(user.id)
     end
   end
 end
