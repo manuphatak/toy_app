@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: session_params.require(:email).downcase)
     if user&.authenticate(session_params.require(:password))
       login user
+      remember user
       redirect_to user
     else
       flash.now[:danger] = 'Invalid email/password combination'
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout
+    logout if logged_in?
     redirect_to root_path
   end
 

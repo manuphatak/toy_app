@@ -16,6 +16,7 @@ RSpec.describe SessionsController, type: :controller do
       let(:valid_params) { { session: { email: 'test@example.com', password: 'password' } } }
       it 'returns http success' do
         expect(controller).to receive(:login).with(user)
+        expect(controller).to receive(:remember).with(user)
 
         post :create, params: valid_params
         expect(response).to have_http_status(:redirect)
