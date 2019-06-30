@@ -48,7 +48,7 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:user) {FactoryBot.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
 
     it 'returns http success' do
       aggregate_failures do
