@@ -26,5 +26,26 @@ RSpec.describe SessionsHelper, type: :helper do
     it 'removes user.id from the session' do
       expect { helper.logout }.to change { helper.logged_in? }.from(true).to(false)
     end
+    it 'resets current_usern' do
+      expect { helper.logout }.to change { helper.current_user }.from(user).to(nil)
+    end
+  end
+
+  describe '#remember' do
+    it 'allows a users authentication to be stored in a cookie' do
+      expect { helper.remember(user) }.to \
+        change { user.authenticated?(helper.cookies[:remember_token]) }.from(false).to(true)
+    end
+
+    it 'allows a users authentication to be stored in a cookie' do
+      expect { helper.remember(user) }.to change { helper.current_user }.from(nil).to(user)
+    end
+  end
+
+  describe '#forget' do
+    before { helper.remember(user) }
+    it 'allows a users authentication to be stored in a cookie' do
+      expect { helper.forget(helper.current_user) }.to change { helper.cookies.signed[:user_id] }.from(user.id).to(nil)
+    end
   end
 end

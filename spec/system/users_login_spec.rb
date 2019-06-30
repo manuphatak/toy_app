@@ -31,6 +31,7 @@ RSpec.describe 'UsersLogin', type: :system do
 
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'password'
+      check 'Remember me'
       click_button 'Log in'
 
       expect(current_path).to eq(user_path(user))
