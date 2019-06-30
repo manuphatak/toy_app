@@ -13,7 +13,7 @@ RSpec.describe SessionsController, type: :controller do
   describe 'POST #create' do
     let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     context 'with valid params' do
-      let(:valid_params) { { session: { email: 'test@example.com', password: 'password' } } }
+      let(:valid_params) { { session: { email: 'test@example.com', password: 'password', remember_me: '1' } } }
       it 'returns http success' do
         expect(controller).to receive(:login).with(user)
         expect(controller).to receive(:remember).with(user)
@@ -48,10 +48,12 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:user) {FactoryBot.create(:user) }
+
     it 'returns http success' do
       aggregate_failures do
         expect(controller).to receive(:logout)
-        delete :destroy
+        delete :destroy, session: { user_id: user.id }
         expect(response).to have_http_status(:redirect)
       end
     end
