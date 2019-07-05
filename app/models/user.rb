@@ -28,7 +28,7 @@ class User < ApplicationRecord
             format: { with: URI::MailTo::EMAIL_REGEXP },
             uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: { minimum: 6 }, on: :create
+  validates :password, length: { minimum: 6, maximum: 128 }, on: :create
 
   before_save { email.downcase! }
 

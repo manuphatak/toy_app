@@ -9,6 +9,7 @@ gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form'
+gem 'devise'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'jbuilder', '~> 2.5'
