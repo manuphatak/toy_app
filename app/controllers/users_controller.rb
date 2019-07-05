@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :require_logged_in, only: %i[edit update]
   before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users
@@ -71,5 +72,12 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def require_logged_in
+    return if logged_in?
+
+    flash[:danger] = 'Please log in.'
+    redirect_to login_path
   end
 end

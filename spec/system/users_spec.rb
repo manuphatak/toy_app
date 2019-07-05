@@ -31,10 +31,22 @@ RSpec.describe 'Users', type: :system do
   end
 
   describe 'updating a User' do
+    let(:user) { create(:user) }
     before { create_list(:user, 5) }
 
+    let(:login!) do
+      visit root_path
+      click_on 'Log in'
+
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: 'password'
+      check 'Remember me'
+      click_button 'Log in'
+    end
+
     it 'shows a success message' do
-      visit users_url
+      login!
+      visit user_url(user)
       click_on 'Edit', match: :first
 
       fill_in 'Email', with: user.email

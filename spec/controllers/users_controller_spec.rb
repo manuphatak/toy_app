@@ -33,7 +33,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #index' do
-    before { :user }
+    before { user }
     it 'returns a success response' do
       get :index
       expect(response).to be_successful
@@ -56,7 +56,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      get :edit, params: { id: user.id }
+      get :edit, params: { id: user.id }, session: { user_id: user.id }
       expect(response).to be_successful
     end
   end
@@ -86,7 +86,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       it 'updates the requested user' do
-        put :update, params: { id: user.id, user: valid_attributes }
+        put :update, params: { id: user.id, user: valid_attributes }, session: { user_id: user.id }
 
         aggregate_failures do
           user.reload
@@ -96,7 +96,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'redirects to the user' do
-        put :update, params: { id: user.id, user: valid_attributes }
+        put :update, params: { id: user.id, user: valid_attributes }, session: { user_id: user.id }
         expect(response).to redirect_to(user)
       end
     end
@@ -104,7 +104,7 @@ RSpec.describe UsersController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
         expect do
-          put :update, params: { id: user.id, user: invalid_attributes }
+          put :update, params: { id: user.id, user: invalid_attributes }, session: { user_id: user.id }
         end.not_to change(user, :updated_at)
 
         expect(response).to be_successful
