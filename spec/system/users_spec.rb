@@ -41,7 +41,7 @@ RSpec.describe 'Users', type: :system do
       fill_in 'Name', with: user.name
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
-      click_on 'Update User'
+      click_on 'Save changes'
 
       expect(page).to have_text 'User was successfully updated'
       click_on 'Back'

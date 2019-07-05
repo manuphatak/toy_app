@@ -20,7 +20,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropown">
               <%= nav_dropdown_item("Profile", current_user) %>
-              <%= nav_dropdown_item("Settings", "#") %>
+              <%= nav_dropdown_item("Settings", edit_user_path(current_user)) %>
 
               <div class="dropdown-divider"></div>
               <%= nav_dropdown_item("Log out", logout_path, method: :delete) %>
