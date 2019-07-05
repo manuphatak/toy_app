@@ -17,6 +17,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form'
 gem 'factory_bot_rails'
+gem 'faker'
 gem 'jquery-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
@@ -24,7 +25,6 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker'
   gem 'pry'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8'
