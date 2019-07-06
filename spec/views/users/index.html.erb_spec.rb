@@ -3,13 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe 'users/index', type: :view do
-  before { assign(:users, FactoryBot.create_list(:user, 5)) }
+  let!(:users) { assign(:users, FactoryBot.create_list(:user, 5)) }
 
   it 'renders a list of users' do
     aggregate_failures do
       render
 
-      expect(rendered).to have_selector('tr>td', text: 'Show', count: 5)
+      users.each do |user|
+        expect(rendered).to have_selector('ul>li h2', text: user.name, count: 1)
+      end
     end
   end
 end

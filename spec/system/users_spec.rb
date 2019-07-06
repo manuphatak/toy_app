@@ -7,15 +7,17 @@ RSpec.describe 'Users', type: :system do
 
   describe 'visiting the index' do
     before { create_list(:user, 5) }
+    before { login_as create(:user) }
+
     it 'shows a list of users' do
-      visit users_url
+      visit users_path
       expect(page).to have_selector 'h1', text: 'Users'
     end
   end
 
   describe 'creating a User' do
     it 'shows a success message' do
-      visit users_url
+      visit root_path
       click_on 'Sign up'
 
       fill_in 'Email', with: user.email
@@ -31,11 +33,10 @@ RSpec.describe 'Users', type: :system do
   end
 
   describe 'updating a User' do
-    let(:current_user) { create(:user) }
+    before { login_as create(:user) }
     before { create_list(:user, 5) }
 
     it 'shows a success message' do
-      sign_in current_user
       visit root_path
 
       click_on 'Account'
@@ -52,16 +53,20 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
-  describe 'destroying a User' do
-    before { create_list(:user, 5) }
+  describe 'cancelling an account' do
+    before { login_as create(:user) }
 
     it 'shows a success message' do
-      visit users_url
+      visit root_path
+
+      click_on 'Account'
+      click_on 'Settings'
+
       page.accept_confirm do
-        click_on 'Destroy', match: :first
+        click_on 'Cancel my account'
       end
 
-      expect(page).to have_text 'User was successfully destroyed'
+      expect(page).to have_text 'Your account has been successfully cancelled.'
     end
   end
 end

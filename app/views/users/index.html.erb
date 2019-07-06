@@ -1,7 +1,22 @@
-<div class="container">
+<% provide(:body_class, 'bg-light') %>
+
+<div class="container bg-light">
   <h1>Users</h1>
 
-  <table>
+  <ul class="list-unstyled">
+    <% @users.each do |user| %>
+      <li class="media align-items-center shadow-sm mb-2 bg-white">
+        <%= gravatar_for(user, klass: "mr-3", size: 64) %>
+        <div class="media-body">
+          <h2  class="h5 mt-0 mb-1"><%= user.name %></h5>
+          <p class="mb-0"><%= user.email %></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+  <!-- <table>
     <thead>
       <tr>
         <th>Name</th>
@@ -24,5 +39,4 @@
 
   <br>
 
-  <%= link_to 'Sign up', new_user_registration_path %>
-</div>
+  <%= link_to 'Sign up', new_user_registration_path %> -->

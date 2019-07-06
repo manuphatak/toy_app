@@ -38,19 +38,9 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
-  let(:valid_attributes) { FactoryBot.attributes_for(:user) }
-
-  let(:invalid_attributes) do
-    {
-      name: '',
-      email: 'test.user',
-      password: 'password',
-      password_confirmation: 'pas$word'
-    }
-  end
 
   describe 'GET #index' do
-    before { user }
+    before { sign_in user }
     it 'returns a success response' do
       get :index
       expect(response).to be_successful
@@ -58,6 +48,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #show' do
+    before { sign_in user }
     it 'returns a success response' do
       get :show, params: { id: user.id }
       expect(response).to be_successful
@@ -65,7 +56,8 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    before { user }
+    before { sign_in user }
+
     it 'destroys the requested user' do
       expect do
         delete :destroy, params: { id: user.id }
