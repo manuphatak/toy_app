@@ -9,6 +9,6 @@ RSpec.describe 'SiteLayout', type: :system do
     expect(page).to have_link  href: help_path
     expect(page).to have_link  href: about_path
     expect(page).to have_link  href: contact_path
-    expect(page).to have_link  href: signup_path
+    expect(page).to have_link  href: new_user_registration_path
   end
 end

@@ -23,28 +23,32 @@ RSpec.describe 'Users', type: :system do
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
 
-      click_on 'Create User'
+      click_on 'Sign up'
 
-      expect(page).to have_text 'User was successfully created'
+      expect(page).to have_text 'You have signed up successfully'
       click_on 'Back'
     end
   end
 
   describe 'updating a User' do
+    let(:current_user) { create(:user) }
     before { create_list(:user, 5) }
 
     it 'shows a success message' do
-      visit users_url
-      click_on 'Edit', match: :first
+      sign_in current_user
+      visit root_path
+
+      click_on 'Account'
+      click_on 'Settings'
 
       fill_in 'Email', with: user.email
       fill_in 'Name', with: user.name
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
-      click_on 'Update User'
+      fill_in 'Current password', with: 'password'
+      click_on 'Save changes'
 
-      expect(page).to have_text 'User was successfully updated'
-      click_on 'Back'
+      expect(page).to have_text 'Profile has been updated successfully'
     end
   end
 

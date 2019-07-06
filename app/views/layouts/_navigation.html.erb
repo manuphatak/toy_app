@@ -13,21 +13,22 @@
       </ul>
 
       <ul class="navbar-nav">
-        <% if logged_in? %>
+        <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="accountDropown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Account
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropown">
               <%= nav_dropdown_item("Profile", current_user) %>
-              <%= nav_dropdown_item("Settings", "#") %>
+              <%= nav_dropdown_item("Settings", edit_user_registration_path) %>
 
               <div class="dropdown-divider"></div>
-              <%= nav_dropdown_item("Log out", logout_path, method: :delete) %>
+
+              <%= nav_dropdown_item("Log out", destroy_user_session_path, method: :delete) %>
             </div>
           </li>
         <% else %>
-          <%= nav_item('Log in', login_path) %>
+          <%= nav_item('Log in', new_user_session_path) %>
         <% end %>
       </ul>
     </div>

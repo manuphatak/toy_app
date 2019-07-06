@@ -4,55 +4,45 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string
-#  name            :string
-#  password_digest :string
-#  remember_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                     :integer          not null, primary key
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
+#  email                  :string
+#  encrypted_password     :string           default(""), not null
+#  failed_attempts        :integer          default(0), not null
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
+#  locked_at              :datetime
+#  name                   :string
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
+#  unconfirmed_email      :string
+#  unlock_token           :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 
 class User < ApplicationRecord
-  attr_accessor :remember_token
+  # Include default devise modules. Others available are:
+  # :confirmable, :timeoutable, :recoverable and :omniauthable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable, :trackable, :lockable
+
   has_many :microposts, dependent: :destroy
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email,
-            presence: true,
-            length: { maximum: 50 },
-            format: { with: URI::MailTo::EMAIL_REGEXP },
-            uniqueness: { case_sensitive: false }
-  has_secure_password
-  validates :password, length: { minimum: 6 }, on: :create
+  validates :name, presence: true, length: { maximum: 64 }
+  validates :email, length: { maximum: 256 }
 
   before_save { email.downcase! }
-
-  def self.digest(password)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(password, cost: cost)
-  end
-
-  def self.new_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def remember
-    @remember_token = self.class.new_token
-    update(remember_digest: self.class.digest(remember_token))
-  end
-
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
-  end
-
-  def forget
-    update(remember_digest: nil)
-  end
 end
