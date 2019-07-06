@@ -4,7 +4,7 @@ inherit_mode:
     - Exclude
 AllCops:
   Exclude:
-    - 'bin/**/*'
+    - bin/**/*
     - db/schema.rb
 Metrics/LineLength:
   Max: 120
@@ -14,7 +14,13 @@ Metrics/BlockLength:
   Exclude:
     - Guardfile
     - config/Guardfile
-    - 'spec/**/*'
+    - spec/**/*
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/**/*
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/**/*
 Style/Documentation:
   Enabled: false
 Rails:
