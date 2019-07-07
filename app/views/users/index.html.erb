@@ -3,40 +3,7 @@
 <div class="container bg-light">
   <h1>Users</h1>
 
-  <ul class="list-unstyled">
-    <% @users.each do |user| %>
-      <li class="media align-items-center shadow-sm mb-2 bg-white">
-        <%= gravatar_for(user, klass: "mr-3", size: 64) %>
-        <div class="media-body">
-          <h2  class="h5 mt-0 mb-1"><%= user.name %></h5>
-          <p class="mb-0"><%= user.email %></p>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <%= will_paginate @users %>
+  <ul id="users" class="list-unstyled"><%= render @users %></ul>
+  <%= will_paginate @users %>
 </div>
-
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td><%= link_to 'Show', user %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'Sign up', new_user_registration_path %> -->

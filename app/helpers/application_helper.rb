@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include WillPaginateHelper
+
   def full_title(page_title)
     base_title = 'Toy App'
     if page_title.present?
