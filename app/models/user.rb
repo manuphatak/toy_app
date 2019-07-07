@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -45,4 +46,6 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 256 }
 
   before_save { email.downcase! }
+
+  self.per_page = 20
 end

@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -38,9 +39,10 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
-    it 'works! (now write some real specs)' do
+    it 'redirects to login when not logged in' do
       get users_path
-      expect(response).to have_http_status(200)
+
+      expect(response).to redirect_to new_user_session_path
     end
   end
 end

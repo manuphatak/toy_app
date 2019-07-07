@@ -27,3 +27,6 @@ Rails:
   Enabled: true
 Style/FormatStringToken:
   Enabled: false
+Rails/OutputSafety:
+  Exclude:
+    - lib/bootstrap_link_renderer.rb

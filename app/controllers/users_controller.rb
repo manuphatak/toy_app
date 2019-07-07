@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.page(params[:page])
   end
 
   # GET /users/1
@@ -16,10 +17,15 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, flash: { success: 'User was successfully destroyed.' } }
-      format.json { head :no_content }
+      if current_user.admin?
+        @user.destroy
+        format.html { redirect_to users_url, flash: { success: 'User was successfully destroyed.' } }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to users_url, flash: { warning: 'Unauthorized' } }
+        format.json { head :unauthorized }
+      end
     end
   end
 

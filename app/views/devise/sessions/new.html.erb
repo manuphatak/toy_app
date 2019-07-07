@@ -10,7 +10,7 @@
       <%= f.form_group :remember_me do %>
         <%= f.check_box :remember_me, custom: :switch if devise_mapping.rememberable?  %>
       <% end %>
-      <%= f.submit 'Log in', class: "btn btn-primary" %>
+      <%= f.primary 'Log in' %>
     <% end %>
   </div>
 </div>

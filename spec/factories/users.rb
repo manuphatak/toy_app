@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -49,6 +50,10 @@ FactoryBot.define do
       after(:create) do |user, evaluator|
         create_list(:micropost, evaluator.posts_count, user: user)
       end
+    end
+
+    factory :admin do
+      admin { true }
     end
   end
 end
