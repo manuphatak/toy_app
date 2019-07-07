@@ -9,6 +9,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 FactoryBot.create_list(:user, 25, :with_posts)
+
 unless User.exists?(email: 'user@example.com')
-  FactoryBot.create(:user, :with_posts, name: 'Joe Sixpack', email: 'user@example.com', posts_count: 50)
+  FactoryBot.create(:user, :with_posts, name: 'Joe Sixpack', email: 'user@example.com', posts_count: 20)
+end
+
+unless User.exists?(email: 'admin@example.com')
+  FactoryBot.create(:admin, :with_posts, name: 'Jane Juggs', email: 'admin@example.com', posts_count: 50)
 end

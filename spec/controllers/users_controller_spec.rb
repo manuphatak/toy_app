@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
@@ -56,17 +57,35 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    before { sign_in user }
+    context 'when signed in as user' do
+      before { sign_in user }
 
-    it 'destroys the requested user' do
-      expect do
-        delete :destroy, params: { id: user.id }
-      end.to change(User, :count).by(-1)
+      it 'does not destroy the requested user' do
+        expect do
+          delete :destroy, params: { id: user.id }
+        end.not_to change(User, :count)
+      end
+
+      it 'redirects to the users list' do
+        delete :destroy, params: { id: user.id, format: :json }
+        expect(response).to have_http_status(:unauthorized)
+      end
     end
 
-    it 'redirects to the users list' do
-      delete :destroy, params: { id: user.id }
-      expect(response).to redirect_to(users_url)
+    context 'when signed in as admin' do
+      let(:user) { FactoryBot.create(:admin) }
+      before { sign_in user }
+
+      it 'destroys the requested user' do
+        expect do
+          delete :destroy, params: { id: user.id }
+        end.to change(User, :count).by(-1)
+      end
+
+      it 'redirects to the users list' do
+        delete :destroy, params: { id: user.id }
+        expect(response).to redirect_to(users_url)
+      end
     end
   end
 end
