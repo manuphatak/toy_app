@@ -2,7 +2,7 @@
   <%= gravatar_for(user, klass: "mr-3", size: 64) %>
   <div class="media-body">
     <h2 class="h5 mt-0 mb-1"><%= link_to user.name, user %></h5>
-      <p class="mb-0"><%= user.email %></p>
+    <p class="mb-0"><%= user.email %></p>
   </div>
   <% if current_user.admin? %>
     <%= link_to(user, method: :delete, data: { confirm: 'Are you sure?' }, class:"close mx-3 text-danger", title: 'Delete', aria: {label: 'Delete'}) do %>
