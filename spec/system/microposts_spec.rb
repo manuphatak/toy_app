@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Microposts', type: :system do
   let(:user) { FactoryBot.create(:user) }
+  let(:current_user) { FactoryBot.create(:admin) }
+  before { sign_in current_user }
 
   describe 'visiting the index' do
     before { FactoryBot.create_list(:micropost, 5) }

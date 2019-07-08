@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto">
         <%= nav_item('Home',root_path) %>
         <%= nav_item('Help', help_path) %>
-        <%= nav_item('Users', users_path) if user_signed_in? %>
+        <%= nav_item('Users', users_path) if can? :read, User %>
       </ul>
 
       <ul class="navbar-nav">

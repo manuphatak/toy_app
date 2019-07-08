@@ -22,6 +22,7 @@ RSpec.describe MicropostsController, type: :controller do
   let(:valid_attributes) { { content: 'This is a micropost', user_id: FactoryBot.create(:user).id } }
   let(:invalid_attributes) { { content: '', user_id: nil } }
 
+  before { sign_in create(:admin) }
   describe 'GET #index' do
     before { micropost }
 
