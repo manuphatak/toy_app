@@ -59,16 +59,17 @@ RSpec.describe UsersController, type: :controller do
   describe 'DELETE #destroy' do
     context 'when signed in as user' do
       before { sign_in user }
+      let!(:other_user) { create(:user) }
 
       it 'does not destroy the requested user' do
         expect do
-          delete :destroy, params: { id: user.id }
+          delete :destroy, params: { id: other_user.id }
         end.not_to change(User, :count)
       end
 
       it 'redirects to the users list' do
-        delete :destroy, params: { id: user.id, format: :json }
-        expect(response).to have_http_status(:unauthorized)
+        delete :destroy, params: { id: other_user.id, format: :json }
+        expect(response).to have_http_status(:forbidden)
       end
     end
 

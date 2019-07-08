@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class MicropostsController < ApplicationController
-  before_action :set_micropost, only: %i[show edit update destroy]
+  load_and_authorize_resource
 
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = Micropost.all.order(created_at: :desc).includes(:user)
+    @microposts = @microposts.order(created_at: :desc).includes(:user)
   end
 
   # GET /microposts/1
@@ -24,8 +24,6 @@ class MicropostsController < ApplicationController
   # POST /microposts
   # POST /microposts.json
   def create
-    @micropost = Micropost.new(micropost_params)
-
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, flash: { success: 'Micropost was successfully created.' } }
@@ -62,11 +60,6 @@ class MicropostsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_micropost
-    @micropost = Micropost.find(params[:id])
-  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def micropost_params

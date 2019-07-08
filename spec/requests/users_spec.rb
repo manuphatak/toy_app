@@ -39,10 +39,10 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
-    it 'redirects to login when not logged in' do
+    it 'redirects to home page when not logged in' do
       get users_path
 
-      expect(response).to redirect_to new_user_session_path
+      expect(response).to redirect_to root_path
     end
   end
 end
