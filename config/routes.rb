@@ -13,6 +13,9 @@
 #                           PUT    /users(.:format)                                                                         devise/registrations#update
 #                           DELETE /users(.:format)                                                                         devise/registrations#destroy
 #                           POST   /users(.:format)                                                                         devise/registrations#create
+#     new_user_confirmation GET    /users/confirmation/new(.:format)                                                        devise/confirmations#new
+#         user_confirmation GET    /users/confirmation(.:format)                                                            devise/confirmations#show
+#                           POST   /users/confirmation(.:format)                                                            devise/confirmations#create
 #           new_user_unlock GET    /users/unlock/new(.:format)                                                              devise/unlocks#new
 #               user_unlock GET    /users/unlock(.:format)                                                                  devise/unlocks#show
 #                           POST   /users/unlock(.:format)                                                                  devise/unlocks#create

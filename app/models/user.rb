@@ -37,15 +37,13 @@
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :timeoutable, :recoverable and :omniauthable
-  devise :database_authenticatable, :registerable, :rememberable, :validatable, :trackable, :lockable
+  # :timeoutable, :recoverable and :omniauthable
+  devise :database_authenticatable, :registerable, :rememberable, :validatable, :trackable, :lockable, :confirmable
 
   has_many :microposts, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 64 }
   validates :email, length: { maximum: 256 }
-
-  before_save { email.downcase! }
 
   self.per_page = 20
 end

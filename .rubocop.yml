@@ -12,8 +12,10 @@ Metrics/LineLength:
     - config/routes.rb
 Metrics/BlockLength:
   Exclude:
-    - Guardfile
+    - config/environments/**/*
     - config/Guardfile
+    - config/initializers/**/*
+    - Guardfile
     - spec/**/*
 Metrics/AbcSize:
   Exclude:
