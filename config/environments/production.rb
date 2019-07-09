@@ -94,7 +94,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'toy.app', protocol: 'http' }
+  config.x.host = ENV.fetch("HOST") { "#{ENV.fetch('HEROKU_APP_NAME')}.herokuapp.com" }
+  config.action_mailer.default_url_options = { config.x.host, protocol: 'http' }
 
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
