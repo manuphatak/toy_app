@@ -84,7 +84,7 @@ RSpec.describe User, type: :model do
     it 'emails are stored as lowercase' do
       expect do
         user.update(email: 'TEST@TOY.APP')
-      end.to change { user.email }.from(user.email).to('test@toy.app')
+      end.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
     end
   end
 end

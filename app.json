@@ -25,6 +25,12 @@
     },
     "SECRET_KEY_BASE": {
       "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required": true
     }
   },
   "formation": {
@@ -34,7 +40,8 @@
   },
   "addons": [
     "papertrail",
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "sendgrid:starter"
   ],
   "buildpacks": [
     {
