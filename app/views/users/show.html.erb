@@ -1,20 +1,22 @@
+<% provide(:body_class, 'bg-light') %>
+
 <div class="container">
-  <h1>
-    <%= gravatar_for(@user, class: "gravatar rounded-circle img-thumbnai") %><%= @user.name %>
-  </h1>
+  <div class="row">
+    <aside class="col-4">
 
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
-  <p>
-    <strong>Posts:</strong>
-    <ul>
-      <% @user.microposts.select(:id, :content).each do |micropost| %>
-        <li><%= micropost.content%></li>
+      <h1>
+        <%= gravatar_for(@user, class: "gravatar rounded-circle img-thumbnai") %><%= @user.name %>
+      </h1>
+    </aside>
+    <div class="col-8">
+      <% if @user.microposts.any? %>
+        <h2>Microposts (<%= @user.microposts.count %>)</h2>
+        <ol class="list-unstyled microposts">
+          <%= render @microposts %>
+        </ol>
+        <%= will_paginate @microposts %>
       <% end %>
-    </ul>
-  </p>
-
-  <%= link_to 'Back', users_path %>
+    </div>
+    <%= link_to 'Back', users_path %>
+  </div>
 </div>
