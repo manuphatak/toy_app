@@ -50,12 +50,12 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
-  fdescribe 'showing a User' do
+  describe 'showing user details' do
     let(:posts_count) { 40 }
     let(:user) { create(:user, :with_posts, posts_count: posts_count) }
     before { login_as user }
 
-    specify do
+    it 'shows user details and paginated microposts' do
       visit user_path(user)
 
       expect(page).to have_title(user.name)
@@ -111,10 +111,10 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
-  describe 'cancelling an account' do
+  xdescribe 'cancelling an account' do
     before { login_as create(:user) }
 
-    xit 'shows a success message' do
+    it 'shows a success message' do
       visit root_path
 
       click_on 'Account'
