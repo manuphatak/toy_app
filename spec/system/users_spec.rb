@@ -50,6 +50,46 @@ RSpec.describe 'Users', type: :system do
     end
   end
 
+  fdescribe 'showing a User' do
+    let(:posts_count) { 40 }
+    let(:user) { create(:user, :with_posts, posts_count: posts_count) }
+    before { login_as user }
+
+    specify do
+      visit user_path(user)
+
+      expect(page).to have_title(user.name)
+
+      within 'h1' do
+        expect(page).to have_text(user.name)
+      end
+
+      within 'h2' do
+        expect(page).to have_text("Microposts (#{posts_count})")
+      end
+
+      within '.microposts' do
+        user.microposts.page(1).each do |micropost|
+          within "#micropost-#{micropost.id}" do
+            expect(page).to have_text(micropost.content)
+          end
+        end
+      end
+
+      within '.pagination' do
+        click_link '2'
+      end
+
+      within '.microposts' do
+        user.microposts.page(2).each do |micropost|
+          within "#micropost-#{micropost.id}" do
+            expect(page).to have_text(micropost.content)
+          end
+        end
+      end
+    end
+  end
+
   describe 'updating a User' do
     before { login_as create(:user) }
     before { create_list(:user, 5) }

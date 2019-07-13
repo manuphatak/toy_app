@@ -12,7 +12,7 @@ RSpec.describe 'SiteLayout', type: :system do
       expect(page).to have_link  href: contact_path
       expect(page).to have_link  href: new_user_registration_path
       expect(page).to have_link  href: new_user_session_path
-      expect(page).not_to have_link href: users_path
+      expect(page).to have_no_link href: users_path
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe 'SiteLayout', type: :system do
     it 'has links from layout' do
       visit root_path
 
-      expect(page).not_to have_link href: new_user_session_path
+      expect(page).to have_no_link href: new_user_session_path
       expect(page).to have_link href: users_path
 
       click_on 'Account'
