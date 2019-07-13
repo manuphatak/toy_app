@@ -19,4 +19,23 @@
 require 'rails_helper'
 
 RSpec.describe Micropost, type: :model do
+  describe 'validations' do
+    subject(:micropost) { build_stubbed(:micropost) }
+    it { is_expected.to be_valid }
+
+    context 'with no user' do
+      before { micropost.user_id = nil }
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with empty content' do
+      before { micropost.content = '    ' }
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with content longer than 140 characters' do
+      before { micropost.content = 'a' * 141 }
+      it { is_expected.not_to be_valid }
+    end
+  end
 end
