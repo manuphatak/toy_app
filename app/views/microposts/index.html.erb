@@ -1,7 +1,17 @@
+<% provide(:body_class, 'bg-light') %>
+
 <div class="container">
   <h1>Microposts</h1>
 
-  <table>
+  <%= will_paginate @microposts %>
+  <ol class="list-unstyled microposts">
+    <%= render @microposts %>
+  </ol>
+  <%= will_paginate @microposts %>
+</div>
+
+<% if false %>
+  <!-- <table>
     <thead>
       <tr>
         <th>Content</th>
@@ -24,5 +34,5 @@
 
   <br>
 
-  <%= link_to 'New Micropost', new_micropost_path %>
-</div>
+  <%= link_to 'New Micropost', new_micropost_path %> -->
+<% end %>

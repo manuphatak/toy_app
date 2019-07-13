@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = @microposts.order(created_at: :desc).includes(:user)
+    @microposts = @microposts.page(params[:page]).includes(:user)
   end
 
   # GET /microposts/1
