@@ -19,8 +19,9 @@
 require 'rails_helper'
 
 RSpec.describe Micropost, type: :model do
+  subject(:micropost) { create(:micropost) }
+
   describe 'validations' do
-    subject(:micropost) { build_stubbed(:micropost) }
     it { is_expected.to be_valid }
 
     context 'with no user' do
