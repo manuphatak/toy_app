@@ -19,21 +19,33 @@
 require 'rails_helper'
 
 RSpec.describe MicropostsController, type: :controller do
-  let(:micropost) { FactoryBot.create(:micropost) }
-  let(:valid_attributes) { { content: 'This is a micropost', user_id: FactoryBot.create(:user).id } }
+  let(:micropost) { create(:micropost) }
+  let(:valid_attributes) { attributes_for(:micropost, user_id: create(:user).id) }
   let(:invalid_attributes) { { content: '', user_id: nil } }
 
-  before { sign_in create(:admin) }
   describe 'GET #index' do
-    before { micropost }
+    context 'when not logged in' do
+      it 'redirects to the home page' do
+        get :index
+        aggregate_failures do
+          expect(response).to redirect_to root_path
+          expect(flash.to_hash).to include('alert' => 'You are not authorized to access this page.')
+        end
+      end
+    end
+    context 'when logged in as admin' do
+      before { sign_in create(:admin) }
 
-    it 'returns a success response' do
-      get :index
-      expect(response).to be_successful
+      it 'returns a success response' do
+        get :index
+        expect(response).to be_successful
+      end
     end
   end
 
   describe 'GET #show' do
+    before { sign_in create(:admin) }
+
     it 'returns a success response' do
       get :show, params: { id: micropost.id }
       expect(response).to be_successful
@@ -41,6 +53,8 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   describe 'GET #new' do
+    before { sign_in create(:admin) }
+
     it 'returns a success response' do
       get :new
       expect(response).to be_successful
@@ -48,6 +62,8 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   describe 'GET #edit' do
+    before { sign_in create(:admin) }
+
     it 'returns a success response' do
       get :edit, params: { id: micropost.id }
       expect(response).to be_successful
@@ -55,6 +71,8 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   describe 'POST #create' do
+    before { sign_in create(:admin) }
+
     context 'with valid params' do
       it 'creates a new Micropost' do
         expect do
@@ -64,7 +82,11 @@ RSpec.describe MicropostsController, type: :controller do
 
       it 'redirects to the created micropost' do
         post :create, params: { micropost: valid_attributes }
-        expect(response).to redirect_to(Micropost.last)
+
+        aggregate_failures do
+          expect(flash.to_h).to include('success' => 'Micropost was successfully created.')
+          expect(response).to redirect_to(Micropost.last)
+        end
       end
     end
 
@@ -77,6 +99,8 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    before { sign_in create(:admin) }
+
     context 'with valid params' do
       it 'updates the requested micropost' do
         put :update, params: { id: micropost.id, micropost: valid_attributes }
@@ -102,6 +126,8 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    before { sign_in create(:admin) }
+
     before { micropost }
     it 'destroys the requested micropost' do
       expect { delete :destroy, params: { id: micropost.id } }.to change(Micropost, :count).by(-1)

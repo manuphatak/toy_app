@@ -41,49 +41,57 @@ RSpec.describe User, type: :model do
   subject(:user) { FactoryBot.create(:user) }
 
   describe 'validations' do
-    it 'should be valid' do
+    it 'is valid' do
       expect(user).to be_valid
     end
 
-    it 'name should be present' do
+    it 'has a name' do
       user.name = '      '
       expect(user).not_to be_valid
     end
 
-    it 'name should not be too long' do
+    it 'has a name with a max length' do
       user.name = 'a' * 65
       expect(user).not_to be_valid
     end
 
-    it 'email should be present' do
+    it 'has an email' do
       user.email = '      '
       expect(user).not_to be_valid
     end
 
-    it 'email should not be too long' do
+    it 'has an email with a max length' do
       user.email = 'a' * 256 + '@example.com'
       expect(user).not_to be_valid
     end
 
-    it 'email should be a valid email address' do
+    it 'has an email with a legit email address' do
       valid_addresses = %w[user22@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
       aggregate_failures do
         valid_addresses.each do |valid_address|
           user.email = valid_address
-          expect(user).to be_valid, "#{valid_address.inspect} should be valid"
+          expect(user).to be_valid, "#{valid_address.inspect} is valid"
         end
       end
     end
 
-    it 'email should be unique' do
+    it 'has a unique email' do
       other_user = FactoryBot.build(:user, email: user.email.upcase)
       expect(other_user).not_to be_valid
     end
+  end
 
-    it 'emails are stored as lowercase' do
-      expect do
-        user.update(email: 'TEST@TOY.APP')
-      end.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
+  it 'stores emails as lowercase' do
+    expect do
+      user.update(email: 'TEST@TOY.APP')
+    end.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
+  end
+
+  context 'given a user with microposts' do
+    let!(:user) { create(:user, :with_posts, posts_count: 10) }
+
+    it 'deleting also destroys associated microposts' do
+      expect { user.destroy }.to change(Micropost, :count).from(10).to(0)
     end
   end
 end
