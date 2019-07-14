@@ -84,8 +84,8 @@ RSpec.describe MicropostsController, type: :controller do
         post :create, params: { micropost: valid_attributes }
 
         aggregate_failures do
-          expect(flash.to_h).to include('success' => 'Micropost was successfully created.')
-          expect(response).to redirect_to(Micropost.last)
+          expect(flash.to_h).to include('success' => 'Micropost created!')
+          expect(response).to redirect_to(root_path)
         end
       end
     end
@@ -146,7 +146,7 @@ RSpec.describe MicropostsController, type: :controller do
 
       it 'redirects to the microposts list' do
         delete :destroy, params: { id: micropost.id }
-        expect(response).to redirect_to(microposts_url)
+        expect(response).to redirect_to(root_path)
       end
     end
   end

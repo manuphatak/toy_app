@@ -1,0 +1,7 @@
+<%= bootstrap_form_with(model: @micropost, local: true) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @micropost %>
+
+  <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+  <%= f.hidden_field :user_id %>
+  <%= f.primary 'Post' %>
+<% end %>

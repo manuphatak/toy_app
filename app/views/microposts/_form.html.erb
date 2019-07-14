@@ -1,27 +1,8 @@
-<%= form_with(model: micropost, local: true) do |form| %>
-  <% if micropost.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(micropost.errors.count, "error") %> prohibited this micropost from being saved:</h2>
+<%= bootstrap_form_with(model: micropost, local: true) do |form| %>
+  <%= render "devise/shared/error_messages", resource: micropost %>
 
-      <ul>
-        <% micropost.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form.text_area :content, placeholder: "Compose new micropost..." %>
+  <%= form.text_field :user_id %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.primary %>
 <% end %>

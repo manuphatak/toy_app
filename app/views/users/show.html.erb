@@ -4,10 +4,8 @@
 <div class="container">
   <div class="row">
     <aside class="col-4">
-
-      <h1>
-        <%= gravatar_for(@user, class: "gravatar rounded-circle img-thumbnai") %><%= @user.name %>
-      </h1>
+      <%= gravatar_for(@user, class: "gravatar rounded-circle img-thumbnail") %>
+      <h1><%= @user.name %></h1>
     </aside>
     <div class="col-8">
       <% if @microposts.any? %>

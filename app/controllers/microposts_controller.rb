@@ -23,13 +23,16 @@ class MicropostsController < ApplicationController
 
   # POST /microposts
   # POST /microposts.json
-  def create
+  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     respond_to do |format|
       if @micropost.save
-        format.html { redirect_to @micropost, flash: { success: 'Micropost was successfully created.' } }
+        format.html { redirect_to root_path, flash: { success: 'Micropost created!' } }
         format.json { render :show, status: :created, location: @micropost }
       else
-        format.html { render :new }
+        format.html do
+          @microposts = current_user.microposts.page(params[:page])
+          render 'static_pages/home'
+        end
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +57,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     respond_to do |format|
-      format.html { redirect_to microposts_url, flash: { succcess: 'Micropost was successfully destroyed.' } }
+      format.html { redirect_to root_path, flash: { success: 'Micropost was successfully destroyed.' } }
       format.json { head :no_content }
     end
   end

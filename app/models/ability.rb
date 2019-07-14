@@ -11,6 +11,8 @@ class Ability
     elsif !user.admin?
       can :read, User
       can %i[update destroy], User, id: user.id
+      can :read, Micropost
+      can :manage, Micropost, user_id: user.id
     end
   end
 end

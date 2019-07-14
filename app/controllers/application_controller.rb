@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery prepend: true
   before_action :configure_devise_params, if: :devise_controller?
   check_authorization unless: :devise_controller?
 
