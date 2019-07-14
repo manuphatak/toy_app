@@ -43,33 +43,6 @@ RSpec.describe MicropostsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    before { sign_in create(:admin) }
-
-    it 'returns a success response' do
-      get :show, params: { id: micropost.id }
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #new' do
-    before { sign_in create(:admin) }
-
-    it 'returns a success response' do
-      get :new
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #edit' do
-    before { sign_in create(:admin) }
-
-    it 'returns a success response' do
-      get :edit, params: { id: micropost.id }
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST #create' do
     before { sign_in create(:admin) }
 
@@ -93,33 +66,6 @@ RSpec.describe MicropostsController, type: :controller do
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: { micropost: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe 'PUT #update' do
-    before { sign_in create(:admin) }
-
-    context 'with valid params' do
-      it 'updates the requested micropost' do
-        put :update, params: { id: micropost.id, micropost: valid_attributes }
-        aggregate_failures do
-          micropost.reload
-          expect(micropost.content).to eq(valid_attributes[:content])
-          expect(micropost.user_id).to eq(valid_attributes[:user_id])
-        end
-      end
-
-      it 'redirects to the micropost' do
-        put :update, params: { id: micropost.id, micropost: valid_attributes }
-        expect(response).to redirect_to(micropost)
-      end
-    end
-
-    context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        put :update, params: { id: micropost.id, micropost: invalid_attributes }
         expect(response).to be_successful
       end
     end

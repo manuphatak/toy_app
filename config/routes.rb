@@ -6,6 +6,11 @@
 #          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
 #              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
 #      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
+#         new_user_password GET    /users/password/new(.:format)                                                            devise/passwords#new
+#        edit_user_password GET    /users/password/edit(.:format)                                                           devise/passwords#edit
+#             user_password PATCH  /users/password(.:format)                                                                devise/passwords#update
+#                           PUT    /users/password(.:format)                                                                devise/passwords#update
+#                           POST   /users/password(.:format)                                                                devise/passwords#create
 #  cancel_user_registration GET    /users/cancel(.:format)                                                                  devise/registrations#cancel
 #     new_user_registration GET    /users/sign_up(.:format)                                                                 devise/registrations#new
 #    edit_user_registration GET    /users/edit(.:format)                                                                    devise/registrations#edit
@@ -26,12 +31,7 @@
 #                   contact GET    /contact(.:format)                                                                       static_pages#contact
 #                microposts GET    /microposts(.:format)                                                                    microposts#index
 #                           POST   /microposts(.:format)                                                                    microposts#create
-#             new_micropost GET    /microposts/new(.:format)                                                                microposts#new
-#            edit_micropost GET    /microposts/:id/edit(.:format)                                                           microposts#edit
-#                 micropost GET    /microposts/:id(.:format)                                                                microposts#show
-#                           PATCH  /microposts/:id(.:format)                                                                microposts#update
-#                           PUT    /microposts/:id(.:format)                                                                microposts#update
-#                           DELETE /microposts/:id(.:format)                                                                microposts#destroy
+#                 micropost DELETE /microposts/:id(.:format)                                                                microposts#destroy
 #                     users GET    /users(.:format)                                                                         users#index
 #                      user GET    /users/:id(.:format)                                                                     users#show
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
@@ -50,6 +50,6 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
 
-  resources :microposts
+  resources :microposts, only: %i[index create destroy]
   resources :users, only: %i[index show destroy]
 end

@@ -9,18 +9,6 @@ class MicropostsController < ApplicationController
     @microposts = @microposts.page(params[:page]).includes(:user)
   end
 
-  # GET /microposts/1
-  # GET /microposts/1.json
-  def show; end
-
-  # GET /microposts/new
-  def new
-    @micropost = Micropost.new
-  end
-
-  # GET /microposts/1/edit
-  def edit; end
-
   # POST /microposts
   # POST /microposts.json
   def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -33,20 +21,6 @@ class MicropostsController < ApplicationController
           @microposts = current_user.microposts.page(params[:page])
           render 'static_pages/home'
         end
-        format.json { render json: @micropost.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /microposts/1
-  # PATCH/PUT /microposts/1.json
-  def update
-    respond_to do |format|
-      if @micropost.update(micropost_params)
-        format.html { redirect_to @micropost, flash: { success: 'Micropost was successfully updated.' } }
-        format.json { render :show, status: :ok, location: @micropost }
-      else
-        format.html { render :edit }
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
       end
     end
