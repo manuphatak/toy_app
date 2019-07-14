@@ -126,16 +126,28 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    before { sign_in create(:admin) }
-
     before { micropost }
-    it 'destroys the requested micropost' do
-      expect { delete :destroy, params: { id: micropost.id } }.to change(Micropost, :count).by(-1)
-    end
 
-    it 'redirects to the microposts list' do
-      delete :destroy, params: { id: micropost.id }
-      expect(response).to redirect_to(microposts_url)
+    context 'when not logged in' do
+      specify { expect { delete :destroy, params: { id: micropost.id } }.not_to change(Micropost, :count) }
+      it 'redirects to the home page' do
+        delete :destroy, params: { id: micropost.id }
+
+        aggregate_failures do
+          expect(response).to redirect_to root_path
+          expect(flash.to_hash).to include('alert' => 'You are not authorized to access this page.')
+        end
+      end
+    end
+    context 'when logged in as admin' do
+      before { sign_in create(:admin) }
+
+      specify { expect { delete :destroy, params: { id: micropost.id } }.to change(Micropost, :count).by(-1) }
+
+      it 'redirects to the microposts list' do
+        delete :destroy, params: { id: micropost.id }
+        expect(response).to redirect_to(microposts_url)
+      end
     end
   end
 end
