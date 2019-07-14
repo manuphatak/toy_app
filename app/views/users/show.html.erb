@@ -10,8 +10,8 @@
       </h1>
     </aside>
     <div class="col-8">
-      <% if @user.microposts.any? %>
-        <h2>Microposts (<%= @user.microposts.count %>)</h2>
+      <% if @microposts.any? %>
+        <h2>Microposts (<%= @microposts.total_entries %>)</h2>
         <ol class="list-unstyled microposts">
           <%= render @microposts %>
         </ol>
