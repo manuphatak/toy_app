@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
     let!(:user) { create(:user, :with_posts, posts_count: 10) }
 
     it 'deleting also destroys associated microposts' do
-      expect { user.destroy }.to change(Micropost, :count).from(10).to(0)
+      expect { user.destroy }.to change(user.microposts, :count).from(10).to(0)
     end
   end
 end

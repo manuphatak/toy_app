@@ -18,7 +18,7 @@ class MicropostsController < ApplicationController
         format.json { render :show, status: :created, location: @micropost }
       else
         format.html do
-          @microposts = current_user.with_attached_image.microposts.page(params[:page])
+          @microposts = current_user.microposts.with_attached_image.page(params[:page])
           render 'static_pages/home'
         end
         format.json { render json: @micropost.errors, status: :unprocessable_entity }

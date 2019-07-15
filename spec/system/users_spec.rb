@@ -110,21 +110,4 @@ RSpec.describe 'Users', type: :system do
       expect(page).to have_text 'Your profile has been updated successfully'
     end
   end
-
-  xdescribe 'cancelling an account' do
-    before { login_as create(:user) }
-
-    it 'shows a success message' do
-      visit root_path
-
-      click_on 'Account'
-      click_on 'Settings'
-
-      page.accept_confirm do
-        click_on 'Cancel my account'
-      end
-
-      expect(page).to have_text 'Your account has been successfully cancelled.'
-    end
-  end
 end
