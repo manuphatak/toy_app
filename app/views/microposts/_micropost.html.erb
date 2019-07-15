@@ -3,6 +3,7 @@
   <div class="media-body">
     <h3 class="h5 mt-0 mb-1"><%= link_to(micropost.user.name, micropost.user) %></h3>
     <p class="mb-1"><%= micropost.content %></p>
+    <%= image_tag(micropost.image.variant(resize: "600x600"), alt: micropost.content, class: 'img-fluid') if micropost.image.attached? %>
     <p class="text-muted mb-0">
       Posted <%= time_ago_in_words(micropost.created_at) %> ago.
       <%= link_to 'delete', micropost, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, micropost  %>

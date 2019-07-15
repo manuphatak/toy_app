@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = @microposts.page(params[:page]).includes(:user)
+    @microposts = @microposts.with_attached_image.page(params[:page]).includes(:user)
   end
 
   # POST /microposts
@@ -18,7 +18,7 @@ class MicropostsController < ApplicationController
         format.json { render :show, status: :created, location: @micropost }
       else
         format.html do
-          @microposts = current_user.microposts.page(params[:page])
+          @microposts = current_user.with_attached_image.microposts.page(params[:page])
           render 'static_pages/home'
         end
         format.json { render json: @micropost.errors, status: :unprocessable_entity }
@@ -40,6 +40,6 @@ class MicropostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def micropost_params
-    params.require(:micropost).permit(:content, :user_id)
+    params.require(:micropost).permit(:content, :user_id, :image)
   end
 end

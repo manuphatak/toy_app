@@ -3,5 +3,7 @@
 
   <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   <%= f.hidden_field :user_id %>
+
+  <%= f.file_field :image, direct_upload: true %>
   <%= f.primary 'Post' %>
 <% end %>

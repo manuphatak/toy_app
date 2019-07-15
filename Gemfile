@@ -14,6 +14,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'image_processing', '~> 1.2'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'puma', '~> 4.0'
@@ -22,9 +23,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate', '~> 3.1.1'
-
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
 
 group :development, :test do
   gem 'awesome_print'
