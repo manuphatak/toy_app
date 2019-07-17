@@ -17,12 +17,14 @@
 #
 
 class Micropost < ApplicationRecord
+  CONTENT_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'].freeze
+
   belongs_to :user
   has_one_attached :image
 
   validates :user_id, presence: true
   validates :content, length: { maximum: 140 }, presence: true
-  validates :image, content_type: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'], byte_size: { maximum: 5.megabytes }
+  validates :image, content_type: CONTENT_TYPES, byte_size: { maximum: 5.megabytes }
 
   default_scope -> { order(created_at: :desc) }
 end

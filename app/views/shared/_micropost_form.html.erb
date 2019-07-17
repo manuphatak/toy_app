@@ -1,9 +1,9 @@
 <%= bootstrap_form_with(model: @micropost, local: true) do |f| %>
   <%= render "devise/shared/error_messages", resource: @micropost %>
 
-  <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   <%= f.hidden_field :user_id %>
+  <%= f.text_area :content, placeholder: "Compose new micropost...", required: true %>
 
-  <%= f.file_field :image, direct_upload: true %>
+  <%= f.file_field :image, direct_upload: true, accept  : Micropost::CONTENT_TYPES.join(',') %>
   <%= f.primary 'Post' %>
 <% end %>
