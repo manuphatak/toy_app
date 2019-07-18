@@ -10,7 +10,8 @@ RSpec.shared_context :with_temporary_table do
   def self.with_temporary_table(&block)
     before(:context) do
       ActiveRecord::Migration.verbose = false # don't output all the migration activity
-      ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:') # switch the active database connection to an SQLite, in-memory database
+      # switch the active database connection to an SQLite, in-memory database
+      ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
       ActiveRecord::Schema.define(version: 1) { instance_eval(&block) }
     end
 

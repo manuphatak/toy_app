@@ -20,6 +20,7 @@ Metrics/BlockLength:
 Metrics/AbcSize:
   Exclude:
     - db/migrate/**/*
+  Max: 16
 Metrics/MethodLength:
   Exclude:
     - db/migrate/**/*

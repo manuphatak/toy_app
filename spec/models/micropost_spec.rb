@@ -19,9 +19,10 @@
 require 'rails_helper'
 
 RSpec.describe Micropost, type: :model do
-  subject(:micropost) { create(:micropost) }
+  it { is_expected.to accept_content_types('image/png', 'image/jpeg', 'image/jpg', 'image/gif').for(:image) }
 
   describe 'validations' do
+    subject(:micropost) { create(:micropost) }
     it { is_expected.to be_valid }
 
     context 'with no user' do
