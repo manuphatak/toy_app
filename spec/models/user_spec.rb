@@ -41,24 +41,12 @@ RSpec.describe User, type: :model do
   subject(:user) { FactoryBot.create(:user) }
 
   describe 'validations' do
-    it 'is valid' do
-      expect(user).to be_valid
-    end
-
-    it 'has a name' do
-      user.name = '      '
-      expect(user).not_to be_valid
-    end
-
-    it 'has a name with a max length' do
-      user.name = 'a' * 65
-      expect(user).not_to be_valid
-    end
-
-    it 'has an email' do
-      user.email = '      '
-      expect(user).not_to be_valid
-    end
+    it { is_expected.to be_valid }
+    it { is_expected.to have_many(:microposts).dependent(:destroy) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_length_of(:name).is_at_most(64) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
 
     it 'has an email with a max length' do
       user.email = 'a' * 256 + '@example.com'
@@ -74,17 +62,10 @@ RSpec.describe User, type: :model do
         end
       end
     end
-
-    it 'has a unique email' do
-      other_user = FactoryBot.build(:user, email: user.email.upcase)
-      expect(other_user).not_to be_valid
-    end
   end
 
   it 'stores emails as lowercase' do
-    expect do
-      user.update(email: 'TEST@TOY.APP')
-    end.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
+    expect { user.update(email: 'TEST@TOY.APP') }.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
   end
 
   context 'given a user with microposts' do

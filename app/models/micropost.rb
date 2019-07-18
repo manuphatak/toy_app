@@ -23,7 +23,7 @@ class Micropost < ApplicationRecord
   has_one_attached :image
 
   validates :user_id, presence: true
-  validates :content, length: { maximum: 140 }, presence: true
+  validates :content, presence: true, length: { maximum: 140 }
   validates :image, content_type: CONTENT_TYPES, byte_size: { maximum: 5.megabytes }
 
   default_scope -> { order(created_at: :desc) }

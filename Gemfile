@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'sqlite3'
 end

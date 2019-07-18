@@ -19,25 +19,13 @@
 require 'rails_helper'
 
 RSpec.describe Micropost, type: :model do
-  it { is_expected.to accept_content_types('image/png', 'image/jpeg', 'image/jpg', 'image/gif').for(:image) }
-
   describe 'validations' do
     subject(:micropost) { create(:micropost) }
     it { is_expected.to be_valid }
-
-    context 'with no user' do
-      before { micropost.user_id = nil }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'with empty content' do
-      before { micropost.content = '    ' }
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'with content longer than 140 characters' do
-      before { micropost.content = 'a' * 141 }
-      it { is_expected.not_to be_valid }
-    end
+    it { is_expected.to accept_content_types('image/png', 'image/jpeg', 'image/jpg', 'image/gif').for(:image) }
+    it { is_expected.to validate_presence_of(:content) }
+    it { is_expected.to validate_length_of(:content).is_at_most(140) }
+    it { is_expected.to validate_presence_of(:user_id) }
+    it { is_expected.to belong_to(:user) }
   end
 end
