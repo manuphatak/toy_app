@@ -1,0 +1,6 @@
+/coverage/
+/log/*
+/node_modules
+/tmp/*
+/vendor/bundle/
+package.json

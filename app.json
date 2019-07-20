@@ -23,11 +23,7 @@
       "quantity": 1
     }
   },
-  "addons": [
-    "papertrail",
-    "heroku-postgresql",
-    "sendgrid:starter"
-  ],
+  "addons": ["papertrail", "heroku-postgresql", "sendgrid:starter"],
   "buildpacks": [
     {
       "url": "heroku/ruby"
