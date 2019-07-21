@@ -26,6 +26,8 @@ Metrics/MethodLength:
     - db/migrate/**/*
 Style/Documentation:
   Enabled: false
+Style/ClassAndModuleChildren:
+  AutoCorrect: true
 Rails:
   Enabled: true
 Style/FormatStringToken:
