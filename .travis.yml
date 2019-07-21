@@ -13,7 +13,7 @@ before_install:
   - nvm install node
   - node --version
   - npm install --global yarn
-  - yarn
+  - yarn install
 bundler_args: --without production
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
@@ -21,7 +21,6 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - bundle exec rails db:setup RAILS_ENV=test
-  - bundle exec yarn install
 script:
   - bundle exec rails webpacker:compile
   - bundle exec yarn lint
