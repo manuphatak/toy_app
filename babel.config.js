@@ -1,12 +1,14 @@
-module.exports = function(api) {
-  var validEnv = ["development", "test", "production"]
-  var currentEnv = api.env()
-  var isDevelopmentEnv = api.env("development")
-  var isProductionEnv = api.env("production")
-  var isTestEnv = api.env("test")
+/* eslint-disable global-require */
+module.exports = function babelConfig(api) {
+  const validEnv = ["development", "test", "production"]
+  const currentEnv = api.env()
+  const isDevelopmentEnv = api.env("development")
+  const isProductionEnv = api.env("production")
+  const isTestEnv = api.env("test")
 
   if (!validEnv.includes(currentEnv)) {
     throw new Error(
+      // eslint-disable-next-line prefer-template
       "Please specify a valid `NODE_ENV` or " +
         '`BABEL_ENV` environment variables. Valid values are "development", ' +
         '"test", and "production". Instead, received: ' +
