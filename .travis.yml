@@ -5,7 +5,7 @@ addons:
   chrome: stable
   apt:
     packages:
-    - chromium-chromedriver
+      - chromium-chromedriver
 before_install:
   - gem install bundler
 bundler_args: --without production
@@ -14,8 +14,9 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  - bundle exec rails db:setup RAILS_ENV=test
+  - bundle exec rails webpacker:compile=test
 script:
-  - bundle exec rails db:setup RAILS_ENV='test'
   - bundle exec rails factory_bot:lint
   - bundle exec rspec
 after_script:
