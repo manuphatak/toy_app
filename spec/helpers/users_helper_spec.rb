@@ -14,12 +14,12 @@ require 'rails_helper'
 # end
 RSpec.describe UsersHelper, type: :helper do
   describe '#gravatar_for' do
-    let(:user) { FactoryBot.build_stubbed(:user) }
+    let(:user) { FactoryBot.build_stubbed(:user, name: 'Joe Sixpack') }
     let(:image) { helper.gravatar_for(user) }
 
     it 'creates a gravatar image tag' do
       aggregate_failures do
-        expect(image).to match(/alt="#{user.name}"/)
+        expect(image).to match(/alt="Joe Sixpack"/)
         expect(image).to match(%r{src="https://secure.gravatar.com/avatar/[0-9a-f]+\?.*"})
       end
     end
