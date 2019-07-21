@@ -10,6 +10,10 @@ addons:
       - chromium-chromedriver
 before_install:
   - gem install bundler
+  - nvm install node
+  - node --version
+  - npm install --global yarn
+  - yarn
 bundler_args: --without production
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
