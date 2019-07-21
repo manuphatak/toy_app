@@ -12,7 +12,9 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show
+    @microposts = @user.microposts.with_attached_image.page(params[:page])
+  end
 
   # DELETE /users/1
   # DELETE /users/1.json

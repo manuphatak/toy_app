@@ -30,4 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  will_paginate:
+    previous_label: "&laquo;"
+    next_label: "&raquo;"
+    page_gap: "&hellip;"
+  errors:
+    messages:
+      content_type: attatchment is not a valid file format
+      byte_size: attatchment is larger than %{limit} limit

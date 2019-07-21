@@ -18,7 +18,7 @@ RSpec.describe 'UsersLogin', type: :system do
       expect(page).to have_selector '.alert-danger', text: 'Invalid Email or password'
 
       visit root_path
-      # expect(page).not_to have_selector '.alert-danger', text: 'Invalid Email or password'
+      # expect(page).to have_no_selector '.alert-danger', text: 'Invalid Email or password'
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe 'UsersLogin', type: :system do
       expect(current_path).to eq(user_path(user))
 
       aggregate_failures do
-        expect(page).not_to have_link 'Log in'
+        expect(page).to have_no_link 'Log in'
 
         click_on 'Account'
         expect(page).to have_link 'Log out', href: destroy_user_session_path

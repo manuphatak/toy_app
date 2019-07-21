@@ -14,6 +14,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'image_processing', '~> 1.2'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'puma', '~> 4.0'
@@ -21,10 +22,8 @@ gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 4.x'
 gem 'will_paginate', '~> 3.1.1'
-
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
 
 group :development, :test do
   gem 'awesome_print'
@@ -35,6 +34,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'sqlite3'
 end
@@ -52,6 +52,7 @@ group :development do
 end
 
 group :production do
+  gem 'aws-sdk-s3', require: false
   gem 'pg'
 end
 

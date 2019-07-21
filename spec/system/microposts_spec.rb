@@ -3,53 +3,51 @@
 require 'rails_helper'
 
 RSpec.describe 'Microposts', type: :system do
-  let(:user) { FactoryBot.create(:user) }
-  let(:current_user) { FactoryBot.create(:admin) }
+  let(:current_user) { create(:user) }
   before { sign_in current_user }
 
   describe 'visiting the index' do
-    before { FactoryBot.create_list(:micropost, 5) }
+    let!(:microposts) { create_list(:micropost, 5, user: current_user) }
+
     it 'lists microposts' do
-      visit microposts_url
-      expect(page).to have_selector 'h1', text: 'Microposts'
+      visit root_url
+      aggregate_failures do
+        within '.microposts' do
+          microposts.each do |micropost|
+            expect(page).to have_selector 'h3', text: current_user.name
+            expect(page).to have_selector 'p', text: micropost.content
+          end
+        end
+      end
     end
   end
 
   describe 'creating a Micropost' do
     it 'shows user success message' do
-      visit microposts_url
-      click_on 'New Micropost'
+      visit root_path
 
       fill_in 'Content', with: '[redacted]'
-      fill_in 'User', with: user.id
-      click_on 'Create Micropost'
+      click_on 'Post'
 
-      expect(page).to have_text 'Micropost was successfully created'
-      click_on 'Back'
-    end
-  end
+      aggregate_failures do
+        within '.alert' do
+          expect(page).to have_text 'Micropost created!'
+        end
 
-  describe 'updating a Micropost' do
-    before { FactoryBot.create(:micropost) }
-    it 'shows user success message' do
-      visit microposts_url
-      click_on 'Edit', match: :first
-
-      fill_in 'Content', with: '[redacted]'
-      fill_in 'User', with: user.id
-      click_on 'Update Micropost'
-
-      expect(page).to have_text 'Micropost was successfully updated'
-      click_on 'Back'
+        within '.microposts' do
+          expect(page).to have_text '[redacted]'
+          expect(page).to have_text 'Posted less than a minute ago.'
+        end
+      end
     end
   end
 
   describe 'destroying a Micropost' do
-    before { FactoryBot.create(:micropost) }
+    before { FactoryBot.create(:micropost, user: current_user) }
     it 'shows user success message' do
-      visit microposts_url
+      visit root_url
       page.accept_confirm do
-        click_on 'Destroy', match: :first
+        click_on 'delete', match: :first
       end
 
       expect(page).to have_text 'Micropost was successfully destroyed'

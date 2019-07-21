@@ -1,0 +1,4 @@
+<%= gravatar_for(current_user, class: "gravatar rounded-circle img-thumbnail") %>
+<h1><%= current_user.name %></h1>
+<p><%= link_to  "view profile", current_user %></p>
+<p><%= pluralize(current_user.microposts.count, 'micropost') %></p>

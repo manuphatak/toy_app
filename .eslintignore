@@ -1,0 +1,7 @@
+/coverage/
+/log/*
+/node_modules
+/tmp/*
+/vendor/bundle/
+/public/packs
+/public/packs-test

@@ -12,7 +12,8 @@
 #
 # Indexes
 #
-#  index_microposts_on_user_id  (user_id)
+#  index_microposts_on_user_id                 (user_id)
+#  index_microposts_on_user_id_and_created_at  (user_id,created_at)
 #
 
 FactoryBot.define do

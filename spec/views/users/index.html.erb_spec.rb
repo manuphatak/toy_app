@@ -18,7 +18,7 @@ RSpec.describe 'users/index', type: :view do
         end
 
         User.page(2).each do |user|
-          expect(rendered).not_to have_link(user.name, href: user_path(user))
+          expect(rendered).to have_no_link(user.name, href: user_path(user))
         end
       end
     end
