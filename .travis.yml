@@ -16,9 +16,8 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-  - bundle exec rails yarn:install
   - bundle exec rails db:setup RAILS_ENV=test
-  - bundle exec rails webpacker:compile RAILS_ENV=test
+  - bundle exec rails assets:precompile RAILS_ENV=test
 script:
   - bundle exec yarn lint
   - bundle exec rails factory_bot:lint
