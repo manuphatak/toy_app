@@ -17,8 +17,9 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - bundle exec rails db:setup RAILS_ENV=test
-  - bundle exec rails assets:precompile RAILS_ENV=test
+  - bundle exec yarn install
 script:
+  - bundle exec rails webpacker:compile
   - bundle exec yarn lint
   - bundle exec rails factory_bot:lint
   - bundle exec rspec
