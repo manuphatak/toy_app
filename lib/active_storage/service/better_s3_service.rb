@@ -5,7 +5,7 @@ require 'active_storage/service/s3_service'
 require 'active_support/core_ext/numeric/bytes'
 
 module ActiveStorage
-  module Service
+  class Service
     class BetterS3Service < Service::S3Service
       attr_reader :client, :bucket, :root, :upload_options
 
