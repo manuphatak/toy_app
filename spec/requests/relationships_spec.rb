@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: relationships
@@ -17,9 +19,9 @@
 
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
-  describe "GET /relationships" do
-    it "works! (now write some real specs)" do
+RSpec.describe 'Relationships', type: :request do
+  describe 'GET /relationships' do
+    it 'works! (now write some real specs)' do
       get relationships_path
       expect(response).to have_http_status(200)
     end
