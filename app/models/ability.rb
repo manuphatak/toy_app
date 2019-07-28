@@ -9,7 +9,7 @@ class Ability
       can :manage, User
       can :manage, Micropost
     elsif !user.admin?
-      can :read, User
+      can %i[read following followers], User
       can %i[update destroy], User, id: user.id
       can :read, Micropost
       can :manage, Micropost, user_id: user.id

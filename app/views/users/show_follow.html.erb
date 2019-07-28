@@ -1,0 +1,31 @@
+<% provide(:body_class, 'bg-light') %>
+<% provide(:title, @title) %>
+
+<div class="container">
+  <div class="row">
+    <aside class="col-4">
+      <section class="user_info">
+        <%= render "shared/user_info", user: @user  %>
+      </section>
+      <section class="stats">
+        <%= render "shared/stats", user: @user %>
+
+        <div class="avatars mt-2">
+          <% @users.each do |user| %>
+            <%= link_to  gravatar_for(user, size: 30, class: 'rounded-circle img-thumbnail'), user %>
+          <% end %>
+        </div>
+      </section>
+    </aside>
+    <div class="col-8">
+      <% if @users.any? %>
+        <h2><%= @title %> <small>(<%= @users.total_entries %>)</small></h2>
+        <ol class="list-unstyled users">
+          <%= render @users %>
+        </ol>
+        <%= will_paginate @users %>
+      <% end %>
+    </div>
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>

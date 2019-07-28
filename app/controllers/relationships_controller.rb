@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RelationshipsController < ApplicationController
+  skip_authorization_check
   before_action :set_relationship, only: %i[show edit update destroy]
 
   # GET /relationships

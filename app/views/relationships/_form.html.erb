@@ -4,9 +4,9 @@
       <h2><%= pluralize(relationship.errors.count, "error") %> prohibited this relationship from being saved:</h2>
 
       <ul>
-      <% relationship.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% relationship.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>

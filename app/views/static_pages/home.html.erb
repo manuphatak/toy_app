@@ -3,10 +3,14 @@
     <div class="row">
       <aside class="col-4">
         <section class="user_info">
-          <%= render  "shared/user_info" %>
+          <%= render "shared/user_info", user: current_user %>
+
+        </section>
+        <section class="stats">
+          <%= render "shared/stats", user: current_user %>
         </section>
         <section class="micropost_form">
-          <%= render  "shared/micropost_form" %>
+          <%= render "shared/micropost_form" %>
         </section>
       </aside>
       <div class="col-8">

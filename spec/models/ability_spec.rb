@@ -31,6 +31,9 @@ RSpec.describe Ability, type: :model do
       it { is_expected.to be_able_to(:read, User.new) }
       it { is_expected.to be_able_to(:update, User.new) }
       it { is_expected.to be_able_to(:destroy, User.new) }
+
+      it { is_expected.to be_able_to(:followers, User.new) }
+      it { is_expected.to be_able_to(:following, User.new) }
     end
 
     describe 'Micropost' do
@@ -51,6 +54,9 @@ RSpec.describe Ability, type: :model do
       it { is_expected.to be_able_to(:update, current_user) }
       it { is_expected.not_to be_able_to(:destroy, User.new) }
       it { is_expected.to be_able_to(:destroy, current_user) }
+
+      it { is_expected.to be_able_to(:followers, User.new) }
+      it { is_expected.to be_able_to(:following, User.new) }
     end
 
     describe 'Micropost' do
