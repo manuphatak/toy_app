@@ -11,8 +11,12 @@ class Ability
     elsif !user.admin?
       can %i[read following followers], User
       can %i[update destroy], User, id: user.id
+
       can :read, Micropost
-      can :manage, Micropost, user_id: user.id
+      can :manage, Micropost, user: user
+
+      can :read, Relationship
+      can %i[create destroy], Relationship, follower: user
     end
   end
 end

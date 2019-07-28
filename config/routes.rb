@@ -40,7 +40,6 @@
 #             relationships GET    /relationships(.:format)                                                                 relationships#index
 #                           POST   /relationships(.:format)                                                                 relationships#create
 #          new_relationship GET    /relationships/new(.:format)                                                             relationships#new
-#         edit_relationship GET    /relationships/:id/edit(.:format)                                                        relationships#edit
 #              relationship GET    /relationships/:id(.:format)                                                             relationships#show
 #                           PATCH  /relationships/:id(.:format)                                                             relationships#update
 #                           PUT    /relationships/:id(.:format)                                                             relationships#update
@@ -67,5 +66,5 @@ Rails.application.routes.draw do
       get :followers
     end
   end
-  resources :relationships
+  resources :relationships, except: %i[edit update]
 end

@@ -17,8 +17,9 @@
         <td><%= relationship.follower_id %></td>
         <td><%= relationship.followed_id %></td>
         <td><%= link_to 'Show', relationship %></td>
-        <td><%= link_to 'Edit', edit_relationship_path(relationship) %></td>
-        <td><%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } if can?(:destroy, relationship) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,3 @@
+<%= bootstrap_form_with(model: current_user.active_relationships.find_by(followed: user), method: :delete, local: true) do |f| %>
+  <%= f.submit 'Unfollow', extra_class: 'mt-2 w-100' %>
+<% end %>

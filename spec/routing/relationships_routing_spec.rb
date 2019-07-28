@@ -34,7 +34,7 @@ RSpec.describe RelationshipsController, type: :routing do
     end
 
     it 'routes to #edit' do
-      expect(get: '/relationships/1/edit').to route_to('relationships#edit', id: '1')
+      expect(get: '/relationships/1/edit').not_to route_to('relationships#edit', id: '1')
     end
 
     it 'routes to #create' do
@@ -42,11 +42,11 @@ RSpec.describe RelationshipsController, type: :routing do
     end
 
     it 'routes to #update via PUT' do
-      expect(put: '/relationships/1').to route_to('relationships#update', id: '1')
+      expect(put: '/relationships/1').not_to route_to('relationships#update', id: '1')
     end
 
     it 'routes to #update via PATCH' do
-      expect(patch: '/relationships/1').to route_to('relationships#update', id: '1')
+      expect(patch: '/relationships/1').not_to route_to('relationships#update', id: '1')
     end
 
     it 'routes to #destroy' do
