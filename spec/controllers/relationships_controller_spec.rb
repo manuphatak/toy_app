@@ -47,11 +47,17 @@ RSpec.describe RelationshipsController, type: :controller do
   # Relationship. As you add validations to Relationship, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      followed_id: create(:user).id,
+      follower_id: create(:user).id
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      followed_id: 15,
+      follower_id: 16
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -68,8 +74,9 @@ RSpec.describe RelationshipsController, type: :controller do
   end
 
   describe 'GET #show' do
+    subject!(:relationship) { create(:relationship) }
+
     it 'returns a success response' do
-      relationship = Relationship.create! valid_attributes
       get :show, params: { id: relationship.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -83,8 +90,9 @@ RSpec.describe RelationshipsController, type: :controller do
   end
 
   describe 'GET #edit' do
+    subject!(:relationship) { create(:relationship) }
+
     it 'returns a success response' do
-      relationship = Relationship.create! valid_attributes
       get :edit, params: { id: relationship.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -93,6 +101,8 @@ RSpec.describe RelationshipsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Relationship' do
+        valid_attributes
+
         expect do
           post :create, params: { relationship: valid_attributes }, session: valid_session
         end.to change(Relationship, :count).by(1)
@@ -115,26 +125,30 @@ RSpec.describe RelationshipsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { followed_id: create(:user).id, follower_id: create(:user).id }
       end
+      subject!(:relationship) { create(:relationship) }
 
       it 'updates the requested relationship' do
-        relationship = Relationship.create! valid_attributes
         put :update, params: { id: relationship.to_param, relationship: new_attributes }, session: valid_session
         relationship.reload
-        skip('Add assertions for updated state')
+
+        aggregate_failures do
+          expect(relationship.follower_id).to eq(new_attributes[:follower_id])
+          expect(relationship.followed_id).to eq(new_attributes[:followed_id])
+        end
       end
 
       it 'redirects to the relationship' do
-        relationship = Relationship.create! valid_attributes
         put :update, params: { id: relationship.to_param, relationship: valid_attributes }, session: valid_session
         expect(response).to redirect_to(relationship)
       end
     end
 
     context 'with invalid params' do
+      subject!(:relationship) { create(:relationship) }
+
       it "returns a success response (i.e. to display the 'edit' template)" do
-        relationship = Relationship.create! valid_attributes
         put :update, params: { id: relationship.to_param, relationship: invalid_attributes }, session: valid_session
         expect(response).to be_successful
       end
@@ -142,15 +156,15 @@ RSpec.describe RelationshipsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    subject!(:relationship) { create(:relationship) }
+
     it 'destroys the requested relationship' do
-      relationship = Relationship.create! valid_attributes
       expect do
         delete :destroy, params: { id: relationship.to_param }, session: valid_session
       end.to change(Relationship, :count).by(-1)
     end
 
     it 'redirects to the relationships list' do
-      relationship = Relationship.create! valid_attributes
       delete :destroy, params: { id: relationship.to_param }, session: valid_session
       expect(response).to redirect_to(relationships_url)
     end
