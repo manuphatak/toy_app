@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   # GET /users/1/following.json
   def following
     @title = 'Following'
-
     @users = @user.following.page(params[:page])
     render 'show_follow'
   end

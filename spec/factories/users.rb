@@ -53,6 +53,26 @@ FactoryBot.define do
       end
     end
 
+    trait :with_following do
+      transient do
+        following_count { 10 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:relationship, evaluator.following_count, follower: user)
+      end
+    end
+
+    trait :with_followers do
+      transient do
+        followers_count { 10 }
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:relationship, evaluator.followers_count, followed: user)
+      end
+    end
+
     factory :admin do
       admin { true }
     end
