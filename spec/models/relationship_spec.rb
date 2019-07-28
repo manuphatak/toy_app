@@ -7,8 +7,8 @@
 #  id          :integer          not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  followed_id :integer
-#  follower_id :integer
+#  followed_id :integer          not null
+#  follower_id :integer          not null
 #
 # Indexes
 #
@@ -20,5 +20,14 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    subject(:relationship) { create(:relationship) }
+    it { is_expected.to be_valid }
+
+    it { is_expected.to belong_to(:followed).class_name('User') }
+    it { is_expected.to belong_to(:follower).class_name('User') }
+
+    it { is_expected.to validate_presence_of(:followed_id) }
+    it { is_expected.to validate_presence_of(:follower_id) }
+  end
 end

@@ -7,8 +7,8 @@
 #  id          :integer          not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  followed_id :integer
-#  follower_id :integer
+#  followed_id :integer          not null
+#  follower_id :integer          not null
 #
 # Indexes
 #
@@ -19,7 +19,7 @@
 
 FactoryBot.define do
   factory :relationship do
-    follower_id { nil }
-    followed_id { nil }
+    association(:follower, factory: :user)
+    association(:followed, factory: :user)
   end
 end
