@@ -41,8 +41,6 @@
 #                           POST   /relationships(.:format)                                                                 relationships#create
 #          new_relationship GET    /relationships/new(.:format)                                                             relationships#new
 #              relationship GET    /relationships/:id(.:format)                                                             relationships#show
-#                           PATCH  /relationships/:id(.:format)                                                             relationships#update
-#                           PUT    /relationships/:id(.:format)                                                             relationships#update
 #                           DELETE /relationships/:id(.:format)                                                             relationships#destroy
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show

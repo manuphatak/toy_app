@@ -21,9 +21,10 @@ require 'rails_helper'
 
 RSpec.describe 'Relationships', type: :request do
   describe 'GET /relationships' do
-    it 'works! (now write some real specs)' do
+    it 'redirects to home page when not logged in' do
       get relationships_path
-      expect(response).to have_http_status(200)
+
+      expect(response).to redirect_to root_path
     end
   end
 end

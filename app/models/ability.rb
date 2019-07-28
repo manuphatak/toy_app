@@ -3,7 +3,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user) # rubocop:disable Metrics/MethodLength
     if !user
     elsif user.admin?
       can :manage, User

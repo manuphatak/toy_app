@@ -65,7 +65,7 @@ RSpec.describe RelationshipsController, type: :controller do
 
       it 'redirects to the created relationship' do
         post :create, params: { relationship: valid_attributes }
-        expect(response).to redirect_to(Relationship.last)
+        expect(response).to redirect_to(user_path(valid_attributes[:followed_id]))
       end
     end
 
@@ -87,9 +87,9 @@ RSpec.describe RelationshipsController, type: :controller do
       end.to change(Relationship, :count).by(-1)
     end
 
-    it 'redirects to the relationships list' do
+    it 'redirects to the followed profile' do
       delete :destroy, params: { id: relationship.to_param }
-      expect(response).to redirect_to(relationships_url)
+      expect(response).to redirect_to(relationship.followed)
     end
   end
 end

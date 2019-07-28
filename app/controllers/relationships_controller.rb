@@ -19,8 +19,9 @@ class RelationshipsController < ApplicationController
   def create
     respond_to do |format|
       if @relationship.save
-        format.html { redirect_to @relationship, notice: 'Relationship was successfully created.' }
+        format.html { redirect_to @relationship.followed, notice: "Now following #{@relationship.followed.name}." }
         format.json { render :show, status: :created, location: @relationship }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @relationship.errors, status: :unprocessable_entity }
@@ -33,8 +34,9 @@ class RelationshipsController < ApplicationController
   def destroy
     @relationship.destroy
     respond_to do |format|
-      format.html { redirect_to relationships_url, notice: 'Relationship was successfully destroyed.' }
+      format.html { redirect_to @relationship.followed, notice: "No longer following #{@relationship.followed.name}." }
       format.json { head :no_content }
+      format.js
     end
   end
 

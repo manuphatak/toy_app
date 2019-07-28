@@ -1,0 +1,7 @@
+$(".follow_form").html(
+  "<%= escape_javascript(render('users/follow', user: @relationship.followed)) %>"
+)
+
+$(".stats > .stat.followers > strong").html(
+  "<%= @relationship.followed.followers.count %>"
+)
