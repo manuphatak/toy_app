@@ -29,5 +29,16 @@ RSpec.describe Relationship, type: :model do
 
     it { is_expected.to validate_presence_of(:followed_id) }
     it { is_expected.to validate_presence_of(:follower_id) }
+
+    context 'when user follows self' do
+      before { relationship.follower_id = relationship.followed_id }
+
+      it 'is invalid with a useful error message' do
+        aggregate_failures do
+          expect(relationship).not_to be_valid
+          expect(relationship.errors.full_messages).to include('User cannot follow self')
+        end
+      end
+    end
   end
 end

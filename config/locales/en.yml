@@ -38,3 +38,8 @@ en:
     messages:
       content_type: attatchment is not a valid file format
       byte_size: attatchment is larger than %{limit} limit
+  activerecord:
+    errors:
+      models:
+        relationship:
+          cannot_follow_self: "User cannot follow self"
