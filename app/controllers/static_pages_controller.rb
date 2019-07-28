@@ -5,7 +5,6 @@ class StaticPagesController < ApplicationController
   def home
     return unless user_signed_in?
 
-    @micropost = current_user.microposts.build
     @microposts = current_user.microposts.with_attached_image.page(params[:page])
   end
 
