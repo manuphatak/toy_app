@@ -7,13 +7,6 @@ class RelationshipsController < ApplicationController
   # GET /relationships.json
   def index; end
 
-  # GET /relationships/1
-  # GET /relationships/1.json
-  def show; end
-
-  # GET /relationships/new
-  def new; end
-
   # POST /relationships
   # POST /relationships.json
   def create
@@ -23,7 +16,7 @@ class RelationshipsController < ApplicationController
         format.json { render :show, status: :created, location: @relationship }
         format.js
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @relationship.errors, status: :unprocessable_entity }
       end
     end

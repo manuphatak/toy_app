@@ -26,11 +26,11 @@ RSpec.describe RelationshipsController, type: :routing do
     end
 
     it 'routes to #new' do
-      expect(get: '/relationships/new').to route_to('relationships#new')
+      expect(get: '/relationships/new').not_to route_to('relationships#new')
     end
 
     it 'routes to #show' do
-      expect(get: '/relationships/1').to route_to('relationships#show', id: '1')
+      expect(get: '/relationships/1').not_to route_to('relationships#show', id: '1')
     end
 
     it 'routes to #edit' do

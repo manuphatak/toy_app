@@ -34,24 +34,6 @@ RSpec.describe RelationshipsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    before { sign_in current_user }
-    subject!(:relationship) { create(:relationship) }
-
-    it 'returns a success response' do
-      get :show, params: { id: relationship.to_param }
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #new' do
-    before { sign_in current_user }
-    it 'returns a success response' do
-      get :new, params: {}
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST #create' do
     before { sign_in current_user }
     context 'with valid params' do

@@ -64,5 +64,5 @@ Rails.application.routes.draw do
       get :followers
     end
   end
-  resources :relationships, except: %i[edit update]
+  resources :relationships, only: %i[index create destroy]
 end
