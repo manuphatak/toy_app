@@ -8,12 +8,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-FactoryBot.create_list(:user, 25, :with_posts)
+FactoryBot.create_list(:user, 50, :with_posts)
 
 unless User.exists?(email: 'user@example.com')
-  FactoryBot.create(:user, :with_posts, name: 'Joe Sixpack', email: 'user@example.com', posts_count: 20)
+  FactoryBot.create(:user, :with_posts, :with_following, :with_followers,
+                    name: 'Joe Sixpack',
+                    email: 'user@example.com',
+                    posts_count: 30)
 end
 
 unless User.exists?(email: 'admin@example.com')
-  FactoryBot.create(:admin, :with_posts, name: 'Jane Juggs', email: 'admin@example.com', posts_count: 50)
+  FactoryBot.create(:admin, :with_posts, :with_following, :with_followers,
+                    name: 'Jane Juggs',
+                    email: 'admin@example.com',
+                    posts_count: 50)
 end
