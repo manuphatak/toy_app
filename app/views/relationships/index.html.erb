@@ -1,25 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% provide(:body_class, 'bg-light') %>
 
-<h1>Relationships</h1>
+<div class="container">
+  <h1>Relationships</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Follower</th>
-      <th>Followed</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @relationships.each do |relationship| %>
-    <tr>
-      <td><%= relationship.follower_id %></td>
-      <td><%= relationship.followed_id %></td>
-      <td>
-        <%= link_to 'Destroy', relationship, method: :delete, data: { confirm: 'Are you sure?' } if can?(:destroy, relationship) %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= will_paginate @relationships %>
+  <ol class="list-unstyled relationships">
+    <%= render @relationships %>
+  </ol>
+  <%= will_paginate @relationships %>
+</div>

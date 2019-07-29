@@ -5,7 +5,12 @@ class RelationshipsController < ApplicationController
 
   # GET /relationships
   # GET /relationships.json
-  def index; end
+  def index
+    respond_to do |format|
+      format.html { @relationships = @relationships.includes(:follower, :followed).page(params[:page]) }
+      format.json { @relationships = @relationships.page(params[:page]) }
+    end
+  end
 
   # POST /relationships
   # POST /relationships.json
