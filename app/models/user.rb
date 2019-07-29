@@ -71,4 +71,11 @@ class User < ApplicationRecord
   def unfollow(other_user)
     following.delete(other_user)
   end
+
+  def feed
+    Micropost
+      .where(user_id: Relationship.select(:followed_id).where(follower_id: id))
+      .or(Micropost.where(user_id: id))
+      .order(created_at: :desc)
+  end
 end

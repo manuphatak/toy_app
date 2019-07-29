@@ -116,4 +116,39 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#feed' do
+    context 'given microposts and follows' do
+      let!(:microposts) { create_list(:micropost, 5, user: user) }
+      let!(:jane) { create(:user, :with_posts, posts_count: 5) }
+      let!(:joe) { create(:user, :with_posts, posts_count: 5) }
+
+      before { user.follow(jane) }
+
+      it 'includes own microposts' do
+        puts user.feed.to_sql
+        aggregate_failures do
+          microposts.each do |micropost|
+            expect(user.feed).to include(micropost)
+          end
+        end
+      end
+
+      it 'includes follows microposts' do
+        aggregate_failures do
+          jane.microposts.each do |micropost|
+            expect(user.feed).to include(micropost)
+          end
+        end
+      end
+
+      it 'does not include microposts from others' do
+        aggregate_failures do
+          joe.microposts.each do |micropost|
+            expect(user.feed).not_to include(micropost)
+          end
+        end
+      end
+    end
+  end
 end
