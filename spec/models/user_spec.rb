@@ -78,38 +78,41 @@ RSpec.describe User, type: :model do
           end
         end
       end
+      it 'stores emails as lowercase' do
+        expect { user.update(email: 'TEST@TOY.APP') }.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
+      end
     end
   end
 
-  it 'stores emails as lowercase' do
-    expect { user.update(email: 'TEST@TOY.APP') }.to change(user, :unconfirmed_email).from(nil).to('test@toy.app')
-  end
+  describe '#destroy' do
+    context 'given a user with microposts' do
+      let!(:user) { create(:user, :with_posts, posts_count: 10) }
 
-  context 'given a user with microposts' do
-    let!(:user) { create(:user, :with_posts, posts_count: 10) }
-
-    it 'deleting also destroys associated microposts' do
-      expect { user.destroy }.to change(user.microposts, :count).from(10).to(0)
+      it 'deleting also destroys associated microposts' do
+        expect { user.destroy }.to change(user.microposts, :count).from(10).to(0)
+      end
     end
   end
 
-  context 'given multiple users' do
-    subject(:joe) { create(:user, name: 'Joe') }
-    subject(:jane) { create(:user, name: 'Jane') }
+  describe '#follow' do
+    context 'given multiple users' do
+      subject(:joe) { create(:user, name: 'Joe') }
+      subject(:jane) { create(:user, name: 'Jane') }
 
-    specify { expect(joe).not_to be_following(jane) }
-    specify { expect(jane).not_to be_following(joe) }
-
-    context 'after joe follows jane' do
-      before { joe.follow(jane) }
-
-      specify { expect(joe).to be_following(jane) }
+      specify { expect(joe).not_to be_following(jane) }
       specify { expect(jane).not_to be_following(joe) }
 
-      context 'after joe stops following jane' do
-        before { joe.unfollow(jane) }
-        specify { expect(joe).not_to be_following(jane) }
+      context 'after joe follows jane' do
+        before { joe.follow(jane) }
+
+        specify { expect(joe).to be_following(jane) }
         specify { expect(jane).not_to be_following(joe) }
+
+        context 'after joe stops following jane' do
+          before { joe.unfollow(jane) }
+          specify { expect(joe).not_to be_following(jane) }
+          specify { expect(jane).not_to be_following(joe) }
+        end
       end
     end
   end
