@@ -8,6 +8,8 @@ addons:
   apt:
     packages:
       - chromium-chromedriver
+services:
+  - postgresql
 before_install:
   - gem install bundler
   - nvm install node
