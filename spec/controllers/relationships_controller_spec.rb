@@ -52,7 +52,7 @@ RSpec.describe RelationshipsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it "returns a :unprocessable_entity status" do
+      it 'returns a :unprocessable_entity status' do
         post :create, params: { relationship: invalid_attributes }, format: :json
         expect(response).to have_http_status(:unprocessable_entity)
       end
