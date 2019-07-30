@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'relationships/index', type: :view do
   let!(:relationships) do
-    create_list(:relationship, 5)
-    assign(:relationships, Relationship.all.page(nil))
+    relationship_ids = create_list(:relationship, 5).pluck(:id)
+    assign(:relationships, Relationship.where(id: relationship_ids).page(nil))
   end
 
   it 'renders a list of relationships' do
