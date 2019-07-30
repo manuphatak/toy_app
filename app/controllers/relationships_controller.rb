@@ -6,9 +6,11 @@ class RelationshipsController < ApplicationController
   # GET /relationships
   # GET /relationships.json
   def index
+    @relationships = @relationships.order(created_at: :desc).page(params[:page])
+
     respond_to do |format|
-      format.html { @relationships = @relationships.includes(:follower, :followed).order(created_at: :desc).page(params[:page]) }
-      format.json { @relationships = @relationships.order(created_at: :desc).page(params[:page]) }
+      format.html { @relationships = @relationships.includes(:follower, :followed) }
+      format.json {}
     end
   end
 
