@@ -1,0 +1,11 @@
+<% provide(:body_class, 'bg-light') %>
+
+<div class="container">
+  <h1>Relationships</h1>
+
+  <%= will_paginate @relationships %>
+  <ol class="list-unstyled relationships">
+    <%= render @relationships %>
+  </ol>
+  <%= will_paginate @relationships %>
+</div>

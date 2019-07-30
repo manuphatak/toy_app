@@ -4,12 +4,17 @@
 <div class="container">
   <div class="row">
     <aside class="col-4">
-      <%= gravatar_for(@user, class: "gravatar rounded-circle img-thumbnail") %>
-      <h1><%= @user.name %></h1>
+      <section class="user_info">
+        <%= render "shared/user_info", user: @user  %>
+      </section>
+      <section class="stats">
+        <%= render "shared/stats", user: @user %>
+      </section>
     </aside>
     <div class="col-8">
+      <%= render  "follow_form", user: @user if user_signed_in? %>
       <% if @microposts.any? %>
-        <h2>Microposts (<%= @microposts.total_entries %>)</h2>
+        <h2>Microposts <small>(<%= @microposts.total_entries %>)</small></h2>
         <ol class="list-unstyled microposts">
           <%= render @microposts %>
         </ol>

@@ -61,7 +61,7 @@ RSpec.describe ContentTypeValidator, type: :concern do
   context 'given a mismatched content type' do
     let(:avatar) { upload('cat.gif') }
 
-    it 'is valid' do
+    it 'is not valid' do
       aggregate_failures do
         expect(person).not_to be_valid
         expect(person.errors.full_messages).to include('Avatar attatchment is not a valid file format')

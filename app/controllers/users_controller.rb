@@ -19,10 +19,26 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user.destroy
     respond_to do |format|
-      @user.destroy
       format.html { redirect_to users_url, flash: { success: 'User was successfully destroyed.' } }
       format.json { head :no_content }
     end
+  end
+
+  # GET /users/1/following
+  # GET /users/1/following.json
+  def following
+    @title = 'Following'
+    @users = @user.following.page(params[:page])
+    render 'show_follow'
+  end
+
+  # GET /users/1/followers
+  # GET /users/1/followers.json
+  def followers
+    @title = 'Followers'
+    @users = @user.followers.page(params[:page])
+    render 'show_follow'
   end
 end

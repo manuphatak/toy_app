@@ -1,7 +1,7 @@
 <li class="media align-items-center shadow-sm mb-2 bg-white" id="<%= "user-#{user.id}" %>">
   <%= gravatar_for(user, class: "mr-3", size: 64) %>
   <div class="media-body">
-    <h2 class="h5 mt-0 mb-1"><%= link_to user.name, user %></h5>
+    <h3 class="h5 mt-0 mb-1"><%= link_to user.name, user %></h3>
     <p class="mb-0"><%= user.email %></p>
   </div>
   <% if can? :destroy, user %>

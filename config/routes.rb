@@ -32,9 +32,14 @@
 #                microposts GET    /microposts(.:format)                                                                    microposts#index
 #                           POST   /microposts(.:format)                                                                    microposts#create
 #                 micropost DELETE /microposts/:id(.:format)                                                                microposts#destroy
+#            following_user GET    /users/:id/following(.:format)                                                           users#following
+#            followers_user GET    /users/:id/followers(.:format)                                                           users#followers
 #                     users GET    /users(.:format)                                                                         users#index
 #                      user GET    /users/:id(.:format)                                                                     users#show
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
+#             relationships GET    /relationships(.:format)                                                                 relationships#index
+#                           POST   /relationships(.:format)                                                                 relationships#create
+#              relationship DELETE /relationships/:id(.:format)                                                             relationships#destroy
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
@@ -51,5 +56,11 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
 
   resources :microposts, only: %i[index create destroy]
-  resources :users, only: %i[index show destroy]
+  resources :users, only: %i[index show destroy] do
+    member do
+      get :following
+      get :followers
+    end
+  end
+  resources :relationships, only: %i[index create destroy]
 end

@@ -38,7 +38,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
+  subject(:user) { create(:user) }
 
   describe 'GET #index' do
     before { sign_in user }
@@ -87,6 +87,22 @@ RSpec.describe UsersController, type: :controller do
         delete :destroy, params: { id: user.id }
         expect(response).to redirect_to(users_url)
       end
+    end
+  end
+
+  describe 'GET #following' do
+    before { sign_in user }
+    it 'returns a success response' do
+      get :following, params: { id: user.id }
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET #followers' do
+    before { sign_in user }
+    it 'returns a success response' do
+      get :followers, params: { id: user.id }
+      expect(response).to be_successful
     end
   end
 end
