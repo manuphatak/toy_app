@@ -50,6 +50,13 @@ RSpec.describe RelationshipsController, type: :controller do
         expect(response).to redirect_to(user_path(valid_attributes[:followed_id]))
       end
     end
+
+    context 'with invalid params' do
+      it "returns a :unprocessable_entity status" do
+        post :create, params: { relationship: invalid_attributes }, format: :json
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
