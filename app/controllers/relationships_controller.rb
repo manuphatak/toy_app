@@ -20,7 +20,7 @@ class RelationshipsController < ApplicationController
     respond_to do |format|
       if @relationship.save
         format.html { redirect_to @relationship.followed, notice: "Now following #{@relationship.followed.name}." }
-        format.json { render :show, status: :created, location: @relationship }
+        format.json { render :index, status: :created, location: @relationship }
         format.js
       else
         format.html { render :index }
