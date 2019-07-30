@@ -1,35 +1,59 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-gem 'rails', '5.0.0'
-gem 'puma', '3.4.0'
-gem 'sass-rails', '5.0.5'
-gem 'uglifier', '3.0.0'
-gem 'coffee-rails', '4.2.1'
-# gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails', '4.1.1'
-gem 'turbolinks', '5.0.0'
-gem 'jbuilder', '2.5.0'
-# gem 'redis', '~> 3.0'
-# gem 'bcrypt', '~> 3.1.7'
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.6.3'
+
+gem 'bcrypt'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap_form'
+gem 'cancancan'
+gem 'devise'
+gem 'dotenv-rails'
+gem 'factory_bot_rails'
+gem 'faker'
+gem 'image_processing', '~> 1.9'
+gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
+gem 'puma', '~> 4.0'
+gem 'rails', '~> 5.2.3'
+gem 'sass-rails', '~> 5.0'
+gem 'turbolinks', '~> 5'
+gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 4.x'
+gem 'will_paginate', '~> 3.1.1'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
-  gem 'byebug', '9.0.5', platform: :mri
+  gem 'awesome_print'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara', '>= 2.15'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+  gem 'sqlite3'
 end
 
 group :development do
-  gem 'web-console', '3.3.1'
-  gem 'listen', '3.0.8'
-  gem 'spring', '1.7.2'
-  gem 'spring-watcher-listen', '2.0.0'
-# gem 'capistrano-rails'
+  gem 'annotate'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console'
 end
 
 group :production do
+  gem 'aws-sdk-s3', require: false
   gem 'pg'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-ruby "2.3.0"
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

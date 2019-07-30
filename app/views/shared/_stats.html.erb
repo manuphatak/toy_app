@@ -1,0 +1,11 @@
+<div class="stats d-flex flex-row">
+  <%= link_to user, class:"card stat d-flex flex-column align-items-center p-2" do %>
+    <strong><%= user.microposts.count %></strong> <%= 'micropost'.pluralize(user.microposts.count)  %>
+  <% end %>
+  <%= link_to following_user_path(user), class:"card stat following d-flex flex-column align-items-center p-2 ml-2" do %>
+    <strong><%= user.following.count %></strong> following
+  <% end %>
+  <%= link_to followers_user_path(user), class:"card stat followers d-flex flex-column align-items-center p-2 ml-2" do %>
+    <strong><%= user.followers.count %></strong> followers
+  <% end %>
+</div>

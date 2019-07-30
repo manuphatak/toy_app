@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+  <div class="container">
+    <div class="row">
+      <aside class="col-4">
+        <section class="user_info">
+          <%= render "shared/user_info", user: current_user %>
+        </section>
+        <section class="stats">
+          <%= render "shared/stats", user: current_user %>
+        </section>
+        <section class="micropost_form">
+          <%= render "shared/micropost_form", micropost: current_user.microposts.build %>
+        </section>
+      </aside>
+      <div class="col-8">
+        <h2>Microposts</h2>
+        <%= render 'shared/microposts' %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Toy App</h1>
+      <p class="lead">This is the home page for the Toy app.</p>
+      <p><%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary", role: "button" %></p>
+    </div>
+  </div>
+<% end %>

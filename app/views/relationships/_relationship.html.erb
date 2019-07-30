@@ -1,0 +1,15 @@
+<li class="relationship media shadow-sm mb-2 bg-white align-items-center" id="<%= "relationship-#{relationship.id}" %>">
+  <%= link_to(gravatar_for(relationship.follower, class: 'mr-3', size: 64), relationship.follower) %>
+  <p class="media-body mb-0 lead">
+    <strong>
+
+      <%= link_to(relationship.follower.name, relationship.follower) %>
+      followed
+      <%= link_to(relationship.followed.name, relationship.followed) %>
+    </strong>
+
+    <small class="text-muted mb-0 font-italic">
+      <%= time_ago_in_words(relationship.created_at) %> ago
+    </small>
+  </p>
+</li>

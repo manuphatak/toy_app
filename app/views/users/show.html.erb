@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% provide(:body_class, 'bg-light') %>
+<% provide(:title, "#{@user.name} Profile") %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Microposts:</strong>
-  <%= @user.microposts.first.content %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="container">
+  <div class="row">
+    <aside class="col-4">
+      <section class="user_info">
+        <%= render "shared/user_info", user: @user  %>
+      </section>
+      <section class="stats">
+        <%= render "shared/stats", user: @user %>
+      </section>
+    </aside>
+    <div class="col-8">
+      <%= render  "follow_form", user: @user if user_signed_in? %>
+      <% if @microposts.any? %>
+        <h2>Microposts <small>(<%= @microposts.total_entries %>)</small></h2>
+        <ol class="list-unstyled microposts">
+          <%= render @microposts %>
+        </ol>
+        <%= will_paginate @microposts %>
+      <% end %>
+    </div>
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>

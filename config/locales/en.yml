@@ -16,8 +16,30 @@
 #
 # This would use the information in config/locales/es.yml.
 #
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  will_paginate:
+    previous_label: "&laquo;"
+    next_label: "&raquo;"
+    page_gap: "&hellip;"
+  errors:
+    messages:
+      content_type: attatchment is not a valid file format
+      byte_size: attatchment is larger than %{limit} limit
+  activerecord:
+    errors:
+      models:
+        relationship:
+          cannot_follow_self: "User cannot follow self"

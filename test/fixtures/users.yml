@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-user:
-  name: User
-  email: user@toy_app.localhost
-
-admin:
-  name: Admin
-  email: admin@toy_app.localhost

@@ -1,1 +1,3 @@
-json.extract! @user, :id, :name, :email, :created_at, :updated_at
+# frozen_string_literal: true
+
+json.partial! 'users/user', user: @user

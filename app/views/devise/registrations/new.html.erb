@@ -1,0 +1,20 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <h1>Sign up</h1>
+    <%= bootstrap_form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true) do |form| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <%= form.text_field :name, autofocus: true %>
+      <%= form.email_field :email, autocomplete: "email" %>
+
+      <%= form.password_field :password, autocomplete: "new-password", min: @minimum_password_length, help: "#{@minimum_password_length} characters minimum"  %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password", min: @minimum_password_lengt %>
+
+      <%= form.primary 'Sign up' %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
