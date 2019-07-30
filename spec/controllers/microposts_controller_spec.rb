@@ -4,7 +4,7 @@
 #
 # Table name: microposts
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  content    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
