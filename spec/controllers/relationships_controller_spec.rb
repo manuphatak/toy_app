@@ -50,13 +50,6 @@ RSpec.describe RelationshipsController, type: :controller do
         expect(response).to redirect_to(user_path(valid_attributes[:followed_id]))
       end
     end
-
-    context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { relationship: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
   end
 
   describe 'DELETE #destroy' do
