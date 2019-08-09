@@ -126,7 +126,6 @@ RSpec.describe User, type: :model do
       before { user.follow(jane) }
 
       it 'includes own microposts' do
-        puts user.feed.to_sql
         aggregate_failures do
           microposts.each do |micropost|
             expect(user.feed).to include(micropost)
