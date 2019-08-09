@@ -27,6 +27,6 @@ before_script:
 script:
   - bundle exec yarn lint
   - bundle exec rails factory_bot:lint
-  - bundle exec rspec
+  - bundle exec rspec --force-color
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
