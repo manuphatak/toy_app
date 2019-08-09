@@ -9,9 +9,8 @@ class CreateRelationships < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
+    add_index :relationships, %i[follower_id followed_id], unique: true
     add_foreign_key :relationships, :users, column: :follower_id
     add_foreign_key :relationships, :users, column: :followed_id
-
-    add_index :relationships, %i[follower_id followed_id], unique: true
   end
 end

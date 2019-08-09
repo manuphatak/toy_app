@@ -17,6 +17,7 @@ gem 'faker'
 gem 'image_processing', '~> 1.9'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'pg'
 gem 'puma', '~> 4.0'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
@@ -53,7 +54,6 @@ end
 
 group :production do
   gem 'aws-sdk-s3', require: false
-  gem 'pg'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

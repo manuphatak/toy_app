@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  admin                  :boolean          default(FALSE), not null
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
@@ -126,7 +126,6 @@ RSpec.describe User, type: :model do
       before { user.follow(jane) }
 
       it 'includes own microposts' do
-        puts user.feed.to_sql
         aggregate_failures do
           microposts.each do |micropost|
             expect(user.feed).to include(micropost)

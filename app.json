@@ -1,13 +1,10 @@
 {
   "name": "toy_app",
-  "description": "",
   "scripts": {
     "postdeploy": "bundle exec rails db:schema:load db:seed"
   },
   "env": {
-    "LANG": {
-      "required": true
-    },
+    "LANG": { "required": true },
     "HEROKU_APP_NAME": { "required": true },
     "HEROKU_PARENT_APP_NAME": { "required": true },
     "PAPERTRAIL_API_TOKEN": { "required": true },
@@ -19,15 +16,10 @@
     "SECRET_KEY_BASE": { "required": true }
   },
   "formation": {
-    "web": {
-      "quantity": 1
-    }
+    "web": { "quantity": 1 }
   },
   "addons": ["papertrail", "heroku-postgresql", "sendgrid:starter"],
-  "buildpacks": [
-    {
-      "url": "heroku/ruby"
-    }
-  ],
-  "stack": "heroku-18"
+  "buildpacks": [{ "url": "heroku/ruby" }],
+  "stack": "heroku-18",
+  "repository": "https://github.com/bionikspoon/toy_app"
 }

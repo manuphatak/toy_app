@@ -1,5 +1,5 @@
 rubocop:
-  config_file: .rubocop.yml
+  config_file: .rubocop_shared.yml
 jshint:
   enabled: false
 eslint:
