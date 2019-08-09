@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.development?
+unless Rails.env.test?
   FactoryBot.create_list(:user, 50, :with_posts)
 
   unless User.exists?(email: 'user@example.com')
