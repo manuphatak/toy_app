@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_07_27_221948) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_07_27_221948) do
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 2019_07_27_221948) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id", null: false
-    t.integer "followed_id", null: false
+    t.bigint "follower_id", null: false
+    t.bigint "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -80,4 +83,8 @@ ActiveRecord::Schema.define(version: 2019_07_27_221948) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "microposts", "users"
+  add_foreign_key "relationships", "users", column: "followed_id"
+  add_foreign_key "relationships", "users", column: "follower_id"
 end

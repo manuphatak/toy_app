@@ -1,39 +1,10 @@
+inherit_from:
+  - .rubocop_shared.yml
 require:
   - rubocop-rails
-inherit_from: .rubocop_todo.yml
-inherit_mode:
-  merge:
-    - Exclude
-AllCops:
-  Exclude:
-    - bin/**/*
-    - db/schema.rb
-Metrics/LineLength:
-  Max: 120
-  Exclude:
-    - config/routes.rb
-Metrics/BlockLength:
-  Exclude:
-    - config/environments/**/*
-    - config/Guardfile
-    - config/initializers/**/*
-    - Guardfile
-    - spec/**/*
-Metrics/AbcSize:
-  Exclude:
-    - db/migrate/**/*
-  Max: 16
-Metrics/MethodLength:
-  Exclude:
-    - db/migrate/**/*
-Style/Documentation:
-  Enabled: false
-Style/ClassAndModuleChildren:
-  AutoCorrect: true
+
 Rails:
   Enabled: true
-Style/FormatStringToken:
-  Enabled: false
 Rails/OutputSafety:
   Exclude:
     - lib/bootstrap_link_renderer.rb
