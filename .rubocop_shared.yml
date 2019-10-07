@@ -4,7 +4,7 @@ inherit_mode:
     - Exclude
 
 AllCops:
-  TargetRubyVersion: "2.6"
+  TargetRubyVersion: "2.5"
   Exclude:
     - vendor/bundle/**/*
     - bin/**/*
