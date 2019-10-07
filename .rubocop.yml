@@ -1,10 +1,15 @@
 inherit_from:
   - .rubocop_shared.yml
 require:
+  - rubocop-faker
   - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: "2.6"
 
 Rails:
   Enabled: true
+
 Rails/OutputSafety:
   Exclude:
     - lib/bootstrap_link_renderer.rb
