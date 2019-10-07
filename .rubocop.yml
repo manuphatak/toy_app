@@ -1,10 +1,12 @@
 inherit_from:
   - .rubocop_shared.yml
 require:
+  - rubocop-faker
   - rubocop-rails
 
 Rails:
   Enabled: true
+
 Rails/OutputSafety:
   Exclude:
     - lib/bootstrap_link_renderer.rb
