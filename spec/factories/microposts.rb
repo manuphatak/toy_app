@@ -24,7 +24,7 @@ FactoryBot.define do
   factory :micropost do
     content { Faker::Quote.famous_last_words }
     user
-    created_at { Faker::Time.between(from: 1.year.ago, to: Time.zone.today, format: :default) }
-    updated_at { Faker::Time.between(from: created_at, to: Time.zone.today, format: :default) }
+    created_at { Faker::Time.between(from: 1.year.ago, to: Time.zone.today) }
+    updated_at { Faker::Time.between(from: created_at, to: Time.zone.today) }
   end
 end
