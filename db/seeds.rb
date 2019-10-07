@@ -17,7 +17,7 @@ unless Rails.env.test?
     followed_ids = User.select(:id).where.not(id: cannot_follow).order('RANDOM()').limit(follow_count).pluck(:id).uniq
 
     relationships = followed_ids.map do |followed_id|
-      { follower_id: user_id, followed_id: followed_id, created_at: Faker::Time.backward(30) }
+      { follower_id: user_id, followed_id: followed_id, created_at: Faker::Time.backward(days: 30) }
     end
 
     Relationship.create(relationships)
