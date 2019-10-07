@@ -44,7 +44,7 @@ group :development do
   gem 'annotate'
   gem 'guard'
   gem 'guard-rspec', require: false
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.3'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'spring'
